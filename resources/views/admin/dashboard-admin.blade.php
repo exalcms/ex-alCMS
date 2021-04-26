@@ -1,0 +1,11 @@
+@extends('layouts.excms')
+
+@section('conteudo')
+    <div class="py-12" style="margin-top: 80px">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <x-welcome-admin />
+            </div>
+        </div>
+    </div>
+@endsection
