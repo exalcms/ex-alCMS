@@ -88,6 +88,16 @@
 
 <!-- Template Main JS File -->
 <script src="{{asset('site/js/main.js')}}"></script>
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.ckeditor').ckeditor();
+    });
+    CKEDITOR.replace('wysiwyg-editor', {
+        filebrowserUploadUrl: "{{route('admin.ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'form'
+    });
+</script>
 
 <script type="text/javascript">
     $("#cpf").mask("000.000.000-00");

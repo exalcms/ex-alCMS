@@ -2,19 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\City;
 use Bootstrapper\Interfaces\TableInterface;
-use Egulias\EmailValidator\EmailLexer;
-use Egulias\EmailValidator\Exception\InvalidEmail;
-use Egulias\EmailValidator\Validation\EmailValidation;
-use Egulias\EmailValidator\Warning\Warning;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -28,9 +21,7 @@ class User extends Authenticatable implements Transformable, TableInterface, Mus
 {
     use HasApiTokens;
     use HasFactory;
-    use HasProfilePhoto;
     use Notifiable;
-    use TwoFactorAuthenticatable;
     use TransformableTrait;
     use SoftDeletes;
 

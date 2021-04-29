@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AssociationsController;
+use App\Http\Controllers\ElementSitesController;
+use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcmsController;
@@ -30,5 +33,20 @@ Route::group([
 
     Route::name('dashboard-admin')->get('dashboard-admin', [UsersController::class, 'admin']);
     Route::resource('users', UsersController::class);
+    Route::resource('assoc', AssociationsController::class);
+    //Route::resource('elems', ElementSitesController::class);
+    Route::get('elems', [ElementSitesController::class, 'index'])->name('elems.index');
+    Route::get('elems/create', [ElementSitesController::class, 'create'])->name('elems.create');
+    Route::get('elems/{elem}/edit', [ElementSitesController::class, 'edit'])->name('elems.edit');
+    Route::get('elems/{elem}', [ElementSitesController::class, 'show'])->name('elems.show');
+    Route::delete('elems/{elem}', [ElementSitesController::class, 'destroy'])->name('elems.destroy');
+    Route::post('elems', [ElementSitesController::class, 'store'])->name('elems.store');
+    Route::post('elems', [ElementSitesController::class, 'update'])->name('elems.update');
+
+
+    Route::post('ckeditor/upload', [ElementSitesController::class, 'upload'])->name('ckeditor.image-upload');
+    Route::resource('imgs', FileUpload::class);
+    Route::get('image-upload', [FileUpload::class, 'createForm'])->name('imgs');
+    Route::post('image-upload', [FileUpload::class, 'fileUpload'])->name('imageUpload');
 
 });

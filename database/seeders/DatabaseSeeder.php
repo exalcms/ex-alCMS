@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -6111,6 +6112,24 @@ class DatabaseSeeder extends Seeder
 
         foreach ($userAdmin as $user) {
             DB::table('users')->insert($user);
+        }
+
+        $assocsPadrao[] = array(
+            array(
+                'raz_soc' => 'Associação de ex-Alunos do Colégio Militar de Salvador',
+                'cnpj' => '13.572.755/0001-02',
+                'end' => 'Rua Território do Amapá, 455',
+                'bairro' => 'Pituba',
+                'cep' => '41.830-540',
+                'cidade' => 'Salvador',
+                'uf' => 'BA',
+                'site' => 'https://www.associacaoexalunoscms.org.br/',
+                'email' => 'assoc.exalcms@gmail.com ',
+                'tel' => '(71) 99957-8916',
+            ),
+        );
+        foreach ($assocsPadrao as $assoc){
+            DB::table('associations')->insert($assoc);
         }
     }
 }

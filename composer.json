@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
+        "folklore/laravel-image": "9999999-dev",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "kris/laravel-form-builder": "^1.40",
@@ -22,6 +23,7 @@
         "prettus/l5-repository": "^2.7"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "lucascudo/laravel-pt-br-localization": "^1.1",
@@ -56,6 +58,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "php artisan ide-helper:generate",
             "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [

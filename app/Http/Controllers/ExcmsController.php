@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Association;
+use App\Models\ElementSite;
 use Illuminate\Http\Request;
 
 class ExcmsController extends Controller
@@ -13,7 +15,8 @@ class ExcmsController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $assoc = ElementSite::orderBy('id', 'DESC')->first();
+        return view('welcome', compact('assoc'));
     }
 
     public function detail()

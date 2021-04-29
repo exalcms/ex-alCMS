@@ -168,6 +168,7 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Folklore\Image\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -236,9 +237,10 @@ return [
         'Button' => Bootstrapper\Facades\Button::class,
         'Form' => Bootstrapper\Facades\Form::class,
         'Icon' => Bootstrapper\Facades\Icon::class,
-        'Image' => Bootstrapper\Facades\Image::class,
         'Table' => Bootstrapper\Facades\Table::class,
+        'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
+        'Imagem' => Folklore\Image\Facade::class,
 
     ],
 

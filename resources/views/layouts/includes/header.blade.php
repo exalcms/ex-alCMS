@@ -97,7 +97,9 @@
                             <li class="drop-down"><a href="{{ route('admin.dashboard-admin') }}">Admin</a>
                                 <ul>
                                     <li><a href="{{route('admin.users.index')}}">Usuários</a></li>
-                                    <li><a href="#">Associação</a></li>
+                                    <li><a href="{{route('admin.assoc.index')}}">Associação</a></li>
+                                    <li><a href="{{route('admin.elems.index')}}">Site Conteúdo</a></li>
+                                    <li><a href="{{route('admin.imgs.index')}}">Upload Fotos</a></li>
                                     <li><a href="#">Galerias</a></li>
                                     <li><a href="#">Avisos/Notícias</a></li>
                                     <li><a href="#">Nossa loja</a></li>

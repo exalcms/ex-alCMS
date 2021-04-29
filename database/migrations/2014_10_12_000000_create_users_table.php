@@ -52,7 +52,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('quiz_result')->nullable();
             $table->string('indicado_por')->nullable(); //ok
-            $table->enum('cad_ativo', ['s', 'n'])->default('n'); //automático
+            $table->enum('cad_ativo', ['s', 'n'])->default('s'); //automático
             $table->text('camp_pesq'); //automático
             $table->enum('cad_atualizado', ['s', 'n'])->default('s');
             $table->dateTime('ult_atualiz')->nullable();
