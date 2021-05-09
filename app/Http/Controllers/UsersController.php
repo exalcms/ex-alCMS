@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Forms\UserForm;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -20,7 +21,7 @@ class UsersController extends Controller
     {
         $search = $request->get('search');
         if($search == null){
-            $users = User::paginate(15);
+            $users = User::orderBy('name_full', 'ASC')->paginate(15);
             return view('admin.users.index', compact('users'));
         }else{
             $users = User::where('camp_pesq', 'LIKE', '%'.$search.'%')->paginate(15);
@@ -152,10 +153,91 @@ class UsersController extends Controller
     }
 
     /**
+     * Show the user profile screen.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function atualiz(Request $request)
+    {
+        $user = Auth::user();
+        //dd($user);
+        return view('profile.cms.show-cms', [
+            'request' => $request,
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Update the authenticated user current.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function atual(Request $request)
+    {
+        $data = $request->all();
+        $user = User::find($request['iduser']);
+        Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'name_full' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'celular' => ['required'],
+            'cep' => ['required'],
+            'end' => ['required'],
+            'dtnasc' => ['required'],
+            'sexo' => ['required'],
+            'assoc' => ['required'],
+            'nome_guerra' => ['required'],
+            'num_cms' => ['required'],
+            'ano_ingres' => ['required'],
+            'ano_saida' => ['required'],
+            'auto_mail' => ['required'],
+            'auto_assoc' => ['required'],
+            'cpf' => ['required', 'string', 'max:14', 'cpf', Rule::unique('users')->ignore($user->id)],
+        ],
+            [
+                'cpf.unique' => 'CPF já cadastrado',
+                'cpf.cpf' => 'CPF inválido',
+                'end.required' => 'Informe o seu endereço!',
+                'auto_mail.required' => 'Você precisa informar se autoriza o envio de E-mails.',
+                'auto_assoc.required' => 'Você precisa informar se autoriza o envio de avisos da Associação.',
+                'sexo.required' => 'Precisa informar seu gênero',
+                'dtnasc.required' => 'Informe a sua data de nascimento',
+                'assoc.required' => 'Informe se você já está associado!',
+                'nome_guerra.required' => 'Informe qual foi o seu Nome de Guerra no Colégio Militar.',
+                'num_cms.required' => 'Informe qual foi o seu número no Colégio Militar',
+                'ano_ingres.required' => 'Informe o ano que você ingressou no Colégio Militar',
+                'ano_saida.required' => 'Informe o ano que você saiu do Colégio Militar',
+            ])->validate();
+
+        if(array_key_exists('redes_sociais', $data)) {
+            $arr = $data['redes_sociais'];
+            $string = implode(', ', $arr);
+            $data['redes_sociais'] = $string;
+        }
+
+        $dtNasc = explode('/', $data['dtnasc']);
+        $data['dtnasc'] = $dtNasc[2].'-'.$dtNasc[1].'-'.$dtNasc[0];
+        $data['cad_ativo'] = 's';
+        $data['ult_atualiz'] = now();
+        $data['cad_atualizado'] = 's';
+
+        $data['camp_pesq'] = $data['name_full'].' '.$data['name'].' '.$data['nome_guerra'].' '.$data['num_cms'].' '.$data['ano_ingres'].' '.$data['ano_saida'];
+
+        //dd($data);
+        $user->fill($data);
+        $user->save();
+
+        $request->session()->flash('msg', 'Cadastro atualizado! A Associação dos ex-Alunos do CMS agradece as informações!!');
+        return redirect()->route('dashboard');
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)

@@ -4,16 +4,16 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\StateRepository;
-use App\Models\State;
-use App\Validators\StateValidator;
+use App\Repositories\DiretoriaRepository;
+use App\Models\Diretoria;
+use App\Validators\DiretoriaValidator;
 
 /**
- * Class StateRepositoryEloquent.
+ * Class DiretoriaRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class StateRepositoryEloquent extends BaseRepository implements StateRepository
+class DiretoriaRepositoryEloquent extends BaseRepository implements DiretoriaRepository
 {
     /**
      * Specify Model class name
@@ -22,10 +22,10 @@ class StateRepositoryEloquent extends BaseRepository implements StateRepository
      */
     public function model()
     {
-        return State::class;
+        return Diretoria::class;
     }
 
-
+    
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,5 @@ class StateRepositoryEloquent extends BaseRepository implements StateRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-
+    
 }

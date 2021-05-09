@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -24,10 +25,13 @@ class User extends Authenticatable implements Transformable, TableInterface, Mus
     use Notifiable;
     use TransformableTrait;
     use SoftDeletes;
+    use HasProfilePhoto;
 
     const ROLE_ADMIN = 1;
     const ROLE_EXALUNO = 2;
     const ROLE_VISITANTE = 3;
+    const ROLE_BENEMERITOS = 4;
+    const ROLE_ESPECIAIS = 5;
 
     /**
      * The attributes that are mass assignable.
@@ -71,11 +75,6 @@ class User extends Authenticatable implements Transformable, TableInterface, Mus
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public function city()
-    {
-        return $this->hasOne(City::class);
-    }
 
     public function getTableHeaders()
     {

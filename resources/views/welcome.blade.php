@@ -29,16 +29,19 @@
 
                 <header class="section-header">
                     <h3>Quem Somos</h3>
+                    @if($assoc instanceof \App\Models\ElementSite)
                     <p>{!! $assoc->quem_somos !!}</p>
+                    @else<p> </p>
+                    @endif
                 </header>
 
                 <div class="row about-container">
 
                     <div class="col-lg-6 content order-lg-1 order-2">
-                        <p>
-                            {!! $assoc->text_abert !!}
-                        </p>
-
+                        @if($assoc instanceof \App\Models\ElementSite)
+                            <p>{!! $assoc->text_abert !!}</p>
+                        @else<p> </p>
+                        @endif
                         <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                             <div class="icon"><i class="fa fa-shopping-bag"></i></div>
                             <h4 class="title"><a href="">Missão</a></h4>
@@ -60,7 +63,9 @@
                     </div>
 
                     <div class="col-lg-6 background order-lg-2" data-aos="zoom-in">
-                        <img src="{{asset('site/img/about-img.svg')}}" class="img-fluid" alt="">
+                        <img src="{{asset('site/img/imgs_cms/cms_atual1.jpg')}}" class="img-fluid" alt="">
+                        <div class="mt-3"><h6>Legenda foto 1</h6></div>
+                        <div class="mt-5"><img src="{{asset('site/img/imgs_cms/cms_pituba.jpg')}}" class="img-fluid" alt=""></div>
                     </div>
                 </div>
 
@@ -108,7 +113,7 @@
                                     <p class="card-text">
                                         {!! $assoc->histo_resum !!}
                                     </p>
-                                    <a href="#" class="readmore">Leia mais </a>
+                                    <a href="{{route('history')}}" class="readmore">Leia mais </a>
                                 </div>
                             </div>
                         </div>
@@ -129,9 +134,9 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                             <div class="testimonial-item">
-                                <img src="{{asset('site/img/testimonial-1.jpg')}}" class="testimonial-img" alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
+                                <img src="{{asset('site/img/dir_joao_pres.jpg')}}" class="testimonial-img" alt="">
+                                <h3>{!! $dirPres->user->nome_guerra !!}</h3>
+                                <h4>{!! $dirPres->diretoria->cargo !!}</h4>
                                 <p>
                                     Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus.
                                     Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at
@@ -149,23 +154,22 @@
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
                     <h3>Diretoria</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+                    <p>Nossa diretoria é composta por ex-alunos que, sem remuneração, dedicam parte do seu tempo às atividades de integração dos ex-alunos através de eventos da Associação.</p>
                 </div>
 
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
                         <div class="member">
-                            <img src="{{asset('site/img/team-1.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset('site/img/dir_joao_pres.jpg')}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>João Leal</h4>
-                                    <span>Presidente</span>
+                                    <h4>{!! $dirPres->user->name !!}</h4>
+                                    <span>{!! $dirPres->diretoria->cargo !!}</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{route('/')}}#contact"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/EX.ALUNOS.CMS" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/exalunoscms/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -174,16 +178,15 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="200">
                         <div class="member">
-                            <img src="{{asset('site/img/team-2.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset('site/img/dir_valmar_vic.jpg')}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>Sarah Jhonson</h4>
-                                    <span>Vice-presidente</span>
+                                    <h4>{!! $dirVic->user->name !!}</h4>
+                                    <span>{!! $dirVic->diretoria->cargo !!}</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{route('/')}}#contact"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/EX.ALUNOS.CMS" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/exalunoscms/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -192,16 +195,15 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="300">
                         <div class="member">
-                            <img src="{{asset('site/img/team-3.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset('site/img/dir_eraldo_sec.jpg')}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>William Anderson</h4>
-                                    <span>Secretário</span>
+                                    <h4>{!! $dirSec->user->name !!}</h4>
+                                    <span>{!! $dirSec->diretoria->cargo !!}</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{route('/')}}#contact"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/EX.ALUNOS.CMS" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/exalunoscms/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -210,16 +212,15 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="400">
                         <div class="member">
-                            <img src="{{asset('site/img/team-4.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset('site/img/dir_placido_fin.jpg')}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>Amanda Jepson</h4>
-                                    <span>Diretor Financeiro</span>
+                                    <h4>{!! $dirFin->user->name !!}</h4>
+                                    <span>{!! $dirFin->diretoria->cargo !!}</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{route('/')}}#contact"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/EX.ALUNOS.CMS" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/exalunoscms/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -234,16 +235,15 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
                         <div class="member">
-                            <img src="{{asset('site/img/team-1.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset('site/img/dir_raul_com.jpg')}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>Walter White</h4>
-                                    <span>Diretor de Com. Social</span>
+                                    <h4>{!! $dirCom->user->name !!}</h4>
+                                    <span>{!! $dirCom->diretoria->cargo !!}</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{route('/')}}#contact"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/EX.ALUNOS.CMS" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/exalunoscms/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -252,16 +252,15 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="200">
                         <div class="member">
-                            <img src="{{asset('site/img/team-2.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset('site/img/dir_maciel_cult.jpg')}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>Sarah Jhonson</h4>
-                                    <span>Diretor Cultural</span>
+                                    <h4>{!! $dirCul->user->name !!}</h4>
+                                    <span>{!! $dirCul->diretoria->cargo !!}</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{route('/')}}#contact"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/EX.ALUNOS.CMS" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/exalunoscms/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -270,16 +269,15 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="300">
                         <div class="member">
-                            <img src="{{asset('site/img/team-3.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset('site/img/dir_cortes_esp.jpg')}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>William Anderson</h4>
-                                    <span>Diretor de Esportes</span>
+                                    <h4>{!! $dirEsp->user->name !!}</h4>
+                                    <span>{!! $dirEsp->diretoria->cargo !!}</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{route('/')}}#contact"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/EX.ALUNOS.CMS" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/exalunoscms/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -288,16 +286,15 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
                         <div class="member">
-                            <img src="{{asset('site/img/team-1.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset('site/img/dir_sem_foto.jpg')}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
-                                    <h4>Walter White</h4>
-                                    <span>Diretor Jurídico</span>
+                                    <h4>{!! $dirJur->user->name !!}</h4>
+                                    <span>{!! $dirJur->diretoria->cargo !!}</span>
                                     <div class="social">
-                                        <a href=""><i class="fa fa-twitter"></i></a>
-                                        <a href=""><i class="fa fa-facebook"></i></a>
-                                        <a href=""><i class="fa fa-google-plus"></i></a>
-                                        <a href=""><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{route('/')}}#contact"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/EX.ALUNOS.CMS" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        <a href="https://www.instagram.com/exalunoscms/" target="_blank"><i class="fa fa-instagram"></i></a>
                                     </div>
                                 </div>
                             </div>

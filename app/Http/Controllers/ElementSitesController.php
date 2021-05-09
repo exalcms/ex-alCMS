@@ -61,7 +61,7 @@ class ElementSitesController extends Controller
      */
     public function edit(ElementSite $elem)
     {
-        return view('admin.elems.edit', compact('elem'));
+        return view('admin.elems.ele.edit', compact('elem'));
     }
 
     /**
@@ -72,6 +72,16 @@ class ElementSitesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
+    {
+        //
+    }
+
+    /**
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function atualiz(Request $request)
     {
 
         $data = $request->all();

@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        /*
         $countries [] = array(
             array('nome' => 'Afeganistão', 'sigla' => 'AF'),
             array('nome' => 'Africa do Sul', 'sigla' => 'ZA'),
@@ -6064,14 +6066,14 @@ class DatabaseSeeder extends Seeder
 
         foreach ($citiesTocant as $city) {
             DB::table('cities')->insert($city);
-        }
+        } */
 
         $userAdmin[] = array(
             array(
                 'name' => 'Claudio',
                 'name_full' => 'Antonio Claudio Abreu de Souza',
                 'email' => 'claudiosouza.cia@gmail.com',
-                'email_verified_at' => now(),
+                'email_verified_at' => null, //now(),
                 'cpf' => '217.913.505-00',
                 'assoc' => 's',
                 'dtnasc' => '1964-05-07',
@@ -6104,15 +6106,17 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('91316445'),
                 'quiz_result' => null,
                 'indicado_por' => null,
-                'cad_ativo' => 's',
+                'cad_ativo' => 'n', //'s',
+                'cad_atualizado' => 'n', //'s',
                 'camp_pesq' => 'Antonio Claudio Abreu de Souza 890 1977 1983 CFR-1981 toninho',
-                'city_id' => 538,
             ),
         );
 
+        /*
         foreach ($userAdmin as $user) {
             DB::table('users')->insert($user);
         }
+        */
 
         $assocsPadrao[] = array(
             array(

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AssociationsController;
+use App\Http\Controllers\DiretoriasController;
+use App\Http\Controllers\DiretoriaUsersController;
 use App\Http\Controllers\ElementSitesController;
 use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\UsersController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\ExcmsController;
 
 Route::get('/', [ExcmsController::class, 'index'])->name('/');
 Route::get('/detail', [ExcmsController::class, 'detail'])->name('detail');
+Route::get('/history', [ExcmsController::class, 'history'])->name('history');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -34,14 +37,10 @@ Route::group([
     Route::name('dashboard-admin')->get('dashboard-admin', [UsersController::class, 'admin']);
     Route::resource('users', UsersController::class);
     Route::resource('assoc', AssociationsController::class);
-    //Route::resource('elems', ElementSitesController::class);
-    Route::get('elems', [ElementSitesController::class, 'index'])->name('elems.index');
-    Route::get('elems/create', [ElementSitesController::class, 'create'])->name('elems.create');
-    Route::get('elems/{elem}/edit', [ElementSitesController::class, 'edit'])->name('elems.edit');
-    Route::get('elems/{elem}', [ElementSitesController::class, 'show'])->name('elems.show');
-    Route::delete('elems/{elem}', [ElementSitesController::class, 'destroy'])->name('elems.destroy');
-    Route::post('elems', [ElementSitesController::class, 'store'])->name('elems.store');
-    Route::post('elems', [ElementSitesController::class, 'update'])->name('elems.update');
+    Route::resource('elems', ElementSitesController::class);
+    Route::post('elems/ele', [ElementSitesController::class, 'atualiz'])->name('elems.myupdate');
+    Route::resource('diret', DiretoriasController::class);
+    Route::resource('compos', DiretoriaUsersController::class);
 
 
     Route::post('ckeditor/upload', [ElementSitesController::class, 'upload'])->name('ckeditor.image-upload');

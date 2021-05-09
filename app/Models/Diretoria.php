@@ -9,11 +9,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Country.
+ * Class Diretoria.
  *
- * @package namespace App\Entities;
+ * @package namespace App\Models;
  */
-class Country extends Model implements Transformable, TableInterface
+class Diretoria extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
     use SoftDeletes;
@@ -23,16 +23,23 @@ class Country extends Model implements Transformable, TableInterface
      *
      * @var array
      */
-    protected $fillable = [ 'nome', 'sigla' ];
-
+    protected $fillable = ['cargo', 'atribui', 'ativo'];
 
     public function getTableHeaders()
     {
-        // TODO: Implement getTableHeaders() method.
+        return ['Id', 'Cargo', 'Atribuição'];
     }
 
     public function getValueForHeader($header)
     {
-        // TODO: Implement getValueForHeader() method.
+        switch ($header){
+            case 'Id':
+                return $this->id;
+            case 'Cargo':
+                return $this->cargo;
+            case 'Atribuição':
+                    return $this->atribui;
+        }
     }
+
 }

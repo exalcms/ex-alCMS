@@ -18,11 +18,11 @@ class JetstreamMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $role = Auth::user()->role;
+        $sit = Auth::user()->cad_atualizado;
         $nome = Auth::user()->nome_guerra;
 
-        if($role == 0) {
-            dd($nome);
+        if($sit == 'n') {
+            return redirect()->route('profile.show-cms');
         }else{
             return $next($request);
         }

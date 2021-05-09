@@ -4,16 +4,16 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\CityRepository;
-use App\Models\City;
-use App\Validators\CityValidator;
+use App\Repositories\DiretoriaUserRepository;
+use App\Models\DiretoriaUser;
+use App\Validators\DiretoriaUserValidator;
 
 /**
- * Class CityRepositoryEloquent.
+ * Class DiretoriaUserRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class CityRepositoryEloquent extends BaseRepository implements CityRepository
+class DiretoriaUserRepositoryEloquent extends BaseRepository implements DiretoriaUserRepository
 {
     /**
      * Specify Model class name
@@ -22,10 +22,10 @@ class CityRepositoryEloquent extends BaseRepository implements CityRepository
      */
     public function model()
     {
-        return City::class;
+        return DiretoriaUser::class;
     }
 
-
+    
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,5 @@ class CityRepositoryEloquent extends BaseRepository implements CityRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-
+    
 }

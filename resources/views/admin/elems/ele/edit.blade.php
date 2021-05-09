@@ -16,7 +16,7 @@
                             </div>
                             <div class="form-admin">
                                 <?php $icon = '<i class="fas fa-save"></i>'; ?>
-                                    <form method="POST" action="#" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('admin.elems.myupdate') }}" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="idelem" value="{{ $elem->id }}">
                                         <div class="form-group">

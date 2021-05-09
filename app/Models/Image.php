@@ -21,7 +21,7 @@ class Image extends Model implements Transformable, TableInterface
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'image_path', 'using' ];
+    protected $fillable = [ 'name', 'image_path', 'using', 'title', 'legenda' ];
 
     public function getTableHeaders()
     {

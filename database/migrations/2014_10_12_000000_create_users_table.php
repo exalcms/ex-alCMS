@@ -57,10 +57,6 @@ class CreateUsersTable extends Migration
             $table->enum('cad_atualizado', ['s', 'n'])->default('s');
             $table->dateTime('ult_atualiz')->nullable();
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            $table->text('profile_photo_path')->nullable();
-            $table->bigInteger('city_id')->unsigned()->nullable(); //ok
-            $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
             $table->softDeletes();
         });

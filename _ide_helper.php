@@ -15750,6 +15750,74 @@
         }
          
     }
+            /**
+     * Facade for MediaObject class
+     *
+     * @package Bootstrapper\Facades
+     * @see Bootstrapper\MediaObject
+     */ 
+        class MediaObject {
+                    /**
+         * Renders the media object
+         *
+         * @return string 
+         * @throws MediaObjectException if there is no contents
+         * @static 
+         */ 
+        public static function render()
+        {
+                        /** @var \Bootstrapper\MediaObject $instance */
+                        return $instance->render();
+        }
+                    /**
+         * Sets the contents of the media object
+         *
+         * @param array $contents The contents of the media object
+         * @return \Bootstrapper\MediaObject 
+         * @static 
+         */ 
+        public static function withContents($contents)
+        {
+                        /** @var \Bootstrapper\MediaObject $instance */
+                        return $instance->withContents($contents);
+        }
+                    /**
+         * Force the media object to become a list
+         *
+         * @return \Bootstrapper\MediaObject 
+         * @static 
+         */ 
+        public static function asList()
+        {
+                        /** @var \Bootstrapper\MediaObject $instance */
+                        return $instance->asList();
+        }
+                    /**
+         * Set the attributes of the object
+         *
+         * @param array $attributes The attributes to use
+         * @return \Bootstrapper\MediaObject 
+         * @static 
+         */ 
+        public static function withAttributes($attributes)
+        {            //Method inherited from \Bootstrapper\RenderedObject         
+                        /** @var \Bootstrapper\MediaObject $instance */
+                        return $instance->withAttributes($attributes);
+        }
+                    /**
+         * Adds the given classes to attributes
+         *
+         * @param array $classes
+         * @return \Bootstrapper\MediaObject 
+         * @static 
+         */ 
+        public static function addClass($classes)
+        {            //Method inherited from \Bootstrapper\RenderedObject         
+                        /** @var \Bootstrapper\MediaObject $instance */
+                        return $instance->addClass($classes);
+        }
+         
+    }
      
 }
 
@@ -22124,6 +22192,7 @@ namespace  {
             class Form extends \Collective\Html\FormFacade {}
             class Icon extends \Bootstrapper\Facades\Icon {}
             class Table extends \Bootstrapper\Facades\Table {}
+            class MediaObject extends \Bootstrapper\Facades\MediaObject {}
             class FormBuilder extends \Kris\LaravelFormBuilder\Facades\FormBuilder {}
             class Imagem extends \Folklore\Image\Facade {}
             class Flare extends \Facade\Ignition\Facades\Flare {}

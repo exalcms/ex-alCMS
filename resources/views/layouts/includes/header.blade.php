@@ -88,8 +88,27 @@
                 <li><a href="{{ route('login') }}">Login</a></li>
             </ul>
         </nav><!-- .main-nav -->
-        @else
+        @elseif(Auth::user()->cad_atualizado == 'n')
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li class="drop-down"><a href="#">{{ Auth::user()->name }}</a>
+                        <ul>
+                            <li><a href="{{route('profile.show-cms')}}">Perfil</a></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
 
+                                    <x-jet-dropdown-link href="{{ route('logout') }}"
+                                                         onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                        {{ __('Logout') }}
+                                    </x-jet-dropdown-link>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        @else
                 <nav class="main-nav float-right d-none d-lg-block">
                     <ul>
                         <li class="active"><a href="{{route('dashboard')}}">Loja</a></li>
@@ -100,6 +119,8 @@
                                     <li><a href="{{route('admin.assoc.index')}}">Associação</a></li>
                                     <li><a href="{{route('admin.elems.index')}}">Site Conteúdo</a></li>
                                     <li><a href="{{route('admin.imgs.index')}}">Upload Fotos</a></li>
+                                    <li><a href="{{route('admin.diret.index')}}">Diretoria</a></li>
+                                    <li><a href="{{route('admin.compos.index')}}">Composição Dir.</a></li>
                                     <li><a href="#">Galerias</a></li>
                                     <li><a href="#">Avisos/Notícias</a></li>
                                     <li><a href="#">Nossa loja</a></li>
@@ -134,6 +155,7 @@
                                 </li>
                             </ul>
                         </li>
+
                     </ul>
                 </nav>
         @endif

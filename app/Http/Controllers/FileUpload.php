@@ -37,6 +37,8 @@ class FileUpload extends Controller
                 $fileModal->name = $name;
                 $fileModal->image_path = '/uploads/'.$name;
                 $fileModal->using = $req['using'];
+                $fileModal->title = $req['title'];
+                $fileModal->legenda = $req['legenda'];
 
                 $fileModal->save();
 

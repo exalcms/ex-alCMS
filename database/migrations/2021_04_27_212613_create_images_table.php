@@ -20,6 +20,8 @@ class CreateImagesTable extends Migration
             $table->string('name');
             $table->string('image_path');
             $table->string('using')->nullable();
+            $table->string('title')->nullable();
+            $table->string('legenda')->nullable();
             $table->timestamps();
 		});
 	}

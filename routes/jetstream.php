@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Http\Controllers\CurrentTeamController;
 use Laravel\Jetstream\Http\Controllers\Livewire\ApiTokenController;
@@ -12,6 +13,11 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
         // User & Profile...
         Route::get('/user/profile', [UserProfileController::class, 'show'])
                     ->name('profile.show');
+        Route::get('/user/profile/cms', [UsersController::class, 'atualiz'])
+            ->name('profile.show-cms');
+        Route::post('/user/profile/cms', [UsersController::class, 'atual'])
+            ->name('profile.show-cms.atual');
+
 
 
 
