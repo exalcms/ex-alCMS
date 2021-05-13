@@ -13,6 +13,7 @@
                         <div class="panel-body">
                             <div class="row btn-new-reset">
                                 {!! Button::primary('Voltar')->asLinkTo(route('admin.imgs.index')) !!}
+                                {!! Button::primary('Relacionar')->asLinkTo(route('admin.imgs.edit', ['img' => $img->id])) !!}
                                 {!! Button::danger('Delete')
                                         ->asLinkTo(route('admin.imgs.destroy', ['img' => $img->id]))
                                         ->addAttributes(['onclick' => 'event.preventDefault();document.getElementById("form-delete").submit();'])
@@ -30,7 +31,6 @@
                                     <div class="row bloco-div-show desk">
                                         <img src="{{ asset($img->image_path) }}" width="200">
                                     </div>
-
                                 </div>
                             </div>
                         </div>

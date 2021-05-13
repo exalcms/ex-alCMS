@@ -4,7 +4,9 @@ use App\Http\Controllers\AssociationsController;
 use App\Http\Controllers\DiretoriasController;
 use App\Http\Controllers\DiretoriaUsersController;
 use App\Http\Controllers\ElementSitesController;
+use App\Http\Controllers\ExPresidentesController;
 use App\Http\Controllers\FileUpload;
+use App\Http\Controllers\MensPresidsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcmsController;
@@ -25,6 +27,7 @@ use App\Http\Controllers\ExcmsController;
 Route::get('/', [ExcmsController::class, 'index'])->name('/');
 Route::get('/detail', [ExcmsController::class, 'detail'])->name('detail');
 Route::get('/history', [ExcmsController::class, 'history'])->name('history');
+Route::get('/message-pres', [ExcmsController::class, 'messagePres'])->name('message-pres');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -41,6 +44,8 @@ Route::group([
     Route::post('elems/ele', [ElementSitesController::class, 'atualiz'])->name('elems.myupdate');
     Route::resource('diret', DiretoriasController::class);
     Route::resource('compos', DiretoriaUsersController::class);
+    Route::resource('menspres', MensPresidsController::class);
+    Route::resource('expresids', ExPresidentesController::class);
 
 
     Route::post('ckeditor/upload', [ElementSitesController::class, 'upload'])->name('ckeditor.image-upload');

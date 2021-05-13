@@ -78,6 +78,7 @@
                     <ul>
                         <li><a href="{{route('/')}}#about">Quem Somos</a></li>
                         <li><a href="{{route('/')}}#history">Histórico</a></li>
+                        <li><a href="{{route('/')}}#mensagempresi">Mensagem do Presidente</a></li>
                         <li><a href="{{route('/')}}#team">Diretoria</a></li>
                         <li><a href="{{route('/')}}#testimonials">Ex-presidentes</a></li>
                     </ul>
@@ -121,6 +122,11 @@
                                     <li><a href="{{route('admin.imgs.index')}}">Upload Fotos</a></li>
                                     <li><a href="{{route('admin.diret.index')}}">Diretoria</a></li>
                                     <li><a href="{{route('admin.compos.index')}}">Composição Dir.</a></li>
+                                    <li><a href="{{route('admin.expresids.index')}}">Ex-Presidentes</a></li>
+                                    <?php $dirPres = App\Models\DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 1)->first();  ?>
+                                    @if(Auth::user()->id == $dirPres->user->id || Auth::user()->id == 1)
+                                    <li><a href="{{route('admin.menspres.index')}}">Mensagens Presi.</a> </li>
+                                    @endif
                                     <li><a href="#">Galerias</a></li>
                                     <li><a href="#">Avisos/Notícias</a></li>
                                     <li><a href="#">Nossa loja</a></li>

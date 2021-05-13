@@ -2178,3 +2178,13 @@ fim do history
     font-size: medium;
     margin-bottom: 4px;
 }
+
+.msg-expresid{
+    background: #FFFFFF;
+    border: solid 0.5pt #0b6bd3;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+

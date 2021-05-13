@@ -33,17 +33,17 @@
             </div>
             <div class="custom-file mt-2">
                 <x-jet-label for="using" value="{{ __('Aplicação das imagens') }}" />
-                <x-jet-input id="using" class="block mt-1 w-full" type="text" name="using[]" :value="old('using')" />
+                <x-jet-input id="using" class="block mt-1 w-full" type="text" name="using" :value="old('using')" />
             </div>
 
             <div class="custom-file mt-2">
                 <x-jet-label for="title" value="{{ __('Título') }}" />
-                <x-jet-input id="title" class="block mt-1 w-full" type="text" name="title[]" :value="old('title')" />
+                <x-jet-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" />
             </div>
 
             <div class="custom-file mt-2">
                 <x-jet-label for="legenda" value="{{ __('Legenda') }}" />
-                <x-jet-input id="legenda" class="block mt-1 w-full" type="text" name="legenda[]" :value="old('legenda')" />
+                <x-jet-input id="legenda" class="block mt-1 w-full" type="text" name="legenda" :value="old('legenda')" />
             </div>
 
             <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">

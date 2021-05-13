@@ -14,8 +14,12 @@ use App\Repositories\DiretoriaRepositoryEloquent;
 use App\Repositories\DiretoriaUserRepository;
 use App\Repositories\ElementSiteRepository;
 use App\Repositories\ElementSiteRepositoryEloquent;
+use App\Repositories\ExPresidenteRepository;
+use App\Repositories\ExPresidenteRepositoryEloquent;
 use App\Repositories\ImageRepository;
 use App\Repositories\ImageRepositoryEloquent;
+use App\Repositories\MensPresidRepository;
+use App\Repositories\MensPresidRepositoryEloquent;
 use App\Repositories\StateRepository;
 use App\Repositories\StateRepositoryEloquent;
 use App\Repositories\UserRepository;
@@ -37,6 +41,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ImageRepository::class, ImageRepositoryEloquent::class);
         $this->app->bind(DiretoriaRepository::class, DiretoriaRepositoryEloquent::class);
         $this->app->bind(DiretoriaUserRepository::class, DiretoriaRepositoryEloquent::class);
+        $this->app->bind(MensPresidRepository::class, MensPresidRepositoryEloquent::class);
+        $this->app->bind(ExPresidenteRepository::class, ExPresidenteRepositoryEloquent::class);
         //:end-bindings:
     }
 

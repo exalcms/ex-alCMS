@@ -96,4 +96,9 @@ class User extends Authenticatable implements Transformable, TableInterface, Mus
         }
     }
 
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
+
 }

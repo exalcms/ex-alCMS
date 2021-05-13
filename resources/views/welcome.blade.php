@@ -137,11 +137,8 @@
                                 <img src="{{asset('site/img/dir_joao_pres.jpg')}}" class="testimonial-img" alt="">
                                 <h3>{!! $dirPres->user->nome_guerra !!}</h3>
                                 <h4>{!! $dirPres->diretoria->cargo !!}</h4>
-                                <p>
-                                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus.
-                                    Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at
-                                    semper. <a href="" class="readmore">Leia mais </a>
-                                </p>
+                                <p>{!! $menspre->introd !!}</p>
+                                <p style="alignment: right !important;"><a href="{{route('message-pres')}}" class="readmore">Leia mais </a></p>
                             </div>
                     </div>
                 </div>

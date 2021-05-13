@@ -6,6 +6,7 @@ use App\Models\Association;
 use App\Models\Diretoria;
 use App\Models\DiretoriaUser;
 use App\Models\ElementSite;
+use App\Models\MensPresid;
 use Illuminate\Http\Request;
 
 class ExcmsController extends Controller
@@ -25,9 +26,11 @@ class ExcmsController extends Controller
         $dirCom = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 6)->first();
         $dirCul = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 7)->first();
         $dirEsp = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 8)->first();
+        $menspre = MensPresid::with('user')->where(['ativa' => 's', 'publica' => 's'])->first();
 
         $assoc = ElementSite::orderBy('id', 'DESC')->first();
-        return view('welcome', compact('assoc', 'dirFin', 'dirPres', 'dirSec', 'dirVic', 'dirJur', 'dirCom', 'dirCul', 'dirEsp'));
+        return view('welcome', compact('assoc', 'dirFin', 'dirPres', 'dirSec', 'dirVic', 'dirJur',
+            'dirCom', 'dirCul', 'dirEsp', 'menspre'));
     }
 
     public function detail()
@@ -39,6 +42,12 @@ class ExcmsController extends Controller
     {
         $history = ElementSite::orderBy('id', 'DESC')->first();
         return view('history', compact('history'));
+    }
+
+    public function messagePres()
+    {
+        $menspre = MensPresid::with('user')->where(['ativa' => 's', 'publica' => 's'])->first();
+        return view('message-pres', compact('menspre'));
     }
 
     /**

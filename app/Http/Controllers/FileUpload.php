@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Forms\RelImagUserForm;
+use App\Models\ExPresidente;
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Imagine\Image\Box;
@@ -14,6 +17,34 @@ class FileUpload extends Controller
         $imgs = Image::paginate(15);
         return view('admin.imgs.index', compact('imgs'));
     }
+
+    public function edit(Image $img)
+    {
+        $form = \FormBuilder::create(RelImagUserForm::class, [
+            'url' => route('admin.imgs.update', ['img' => $img->id]),
+            'method' => 'PUT',
+            'model' => $img,
+            'data' => ['id' => $img->id],
+        ]);
+
+        return view('admin.imgs.create-rel', compact('form', 'img'));
+    }
+
+
+    /**
+     * @param Request $request
+     * * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $data = $request->all();
+        $img = Image::find($data['image_id'])->first();
+        $expresid = ExPresidente::find($data['user'])->first();
+        $expresid->images()->attach($img->id);
+        $expresid->save();
+        return redirect()->route('admin.imgs.index');
+    }
+
     public function createForm()
     {
         return view('admin.imgs.image-upload');
@@ -40,6 +71,7 @@ class FileUpload extends Controller
                 $fileModal->title = $req['title'];
                 $fileModal->legenda = $req['legenda'];
 
+                //dd($fileModal);
                 $fileModal->save();
 
                 $thumbSmall = \Imagem::open($fileModal->image_path)->thumbnail(new Box(60, 60));
