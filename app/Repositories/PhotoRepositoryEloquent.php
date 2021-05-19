@@ -4,16 +4,16 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\ImageRepository;
-use App\Models\Image;
-use App\Validators\ImageValidator;
+use App\Repositories\PhotoRepository;
+use App\Models\Photo;
+use App\Validators\PhotoValidator;
 
 /**
- * Class ImageRepositoryEloquent.
+ * Class PhotoRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
+class PhotoRepositoryEloquent extends BaseRepository implements PhotoRepository
 {
     /**
      * Specify Model class name
@@ -22,7 +22,7 @@ class ImageRepositoryEloquent extends BaseRepository implements ImageRepository
      */
     public function model()
     {
-        return Image::class;
+        return Photo::class;
     }
 
     

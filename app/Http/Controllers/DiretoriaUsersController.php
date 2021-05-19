@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Forms\DiretoriaUserForm;
+use App\Forms\RelPhotoDiretForm;
 use App\Models\DiretoriaUser;
 use Illuminate\Http\Request;
 
@@ -45,7 +46,6 @@ class DiretoriaUsersController extends Controller
         $data = $request->all();
 
         DiretoriaUser::create($data);
-
         $request->session()->flash('msg', 'Registro salvo com sucesso!');
         return redirect()->back();
     }
@@ -79,6 +79,18 @@ class DiretoriaUsersController extends Controller
         return view('admin.compos.edit', compact('form'));
     }
 
+    public function photorel(DiretoriaUser $compo)
+    {
+        $form = \FormBuilder::create(RelPhotoDiretForm::class, [
+            'url' => route('admin.compos.update', ['compo' => $compo->id]),
+            'method' => 'PUT',
+            'model' => $compo,
+            'data' => ['id' => $compo->id],
+        ]);
+
+        return view('admin.compos.photo-rel', compact('form', 'compo'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -88,13 +100,18 @@ class DiretoriaUsersController extends Controller
      */
     public function update(Request $request, DiretoriaUser $compo)
     {
-        $form = \FormBuilder::create(DiretoriaUserForm::class);
+        $data = $request->all();
+        if(key_exists('photo_id', $data)){
+            $data['foto'] = true;
+        }
 
-        $data = array_filter($form->getFieldValues());
         $compo->fill($data);
         $compo->save();
-
-        $request->session()->flash('msg', 'Registro atualizado com sucesso!!!');
+        if(key_exists('photo_id', $data)){
+            $request->session()->flash('msg', 'Foto anexada com sucesso');
+        }else{
+            $request->session()->flash('msg', 'Registro atualizado com sucesso');
+        }
         return redirect()->route('admin.compos.index');
     }
 

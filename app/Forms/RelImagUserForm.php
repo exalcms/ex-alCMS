@@ -17,11 +17,11 @@ class RelImagUserForm extends Form
             $choices[$id3] = $nome;
         }
         $this
-            ->add('imagem', 'text',[
-                'value' => $this->model->name,
+            ->add('photo', 'text',[
+                'value' => $this->model->origin_name,
                 'label' => 'Nome da Imagem'
             ])
-            ->add('user', 'choice', [
+            ->add('user_id', 'choice', [
                 'label' => 'Ex-ALuno',
                 'choices' => $choices,
                 'choice_options' => [

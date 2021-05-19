@@ -18,9 +18,27 @@
                             <div class="row" style="margin-left: 10px; margin-right: 10px;">
                                 {!!
                                     Table::withContents($compos)->striped()
+                                    ->callback('Detalhes', function ($field, $compo){
+
+                                        if(!$compo->foto){
+                                            $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
+                                            $foto = $img->name;
+                                        }else{
+                                            $img = \App\Models\Photo::where('id', '=', $compo->photo_id)->first();
+                                            $foto = $img->name;
+                                        }
+                                        return MediaObject::withContents([
+                                            'image' => asset('storage/'.$foto),
+                                            'link' => '#',
+                                            'heading' => $compo->user->name_full,
+                                            'body' => $compo->diretoria->cargo,
+                                            ]);
+                                    })
                                     ->callback('Actions', function ($field, $compo){
                                         $linkEdit = route('admin.compos.edit', ['compo' => $compo->id]);
-                                        return \Bootstrapper\Facades\Button::LINK('<i class="fas fa-pencil-alt"></i>')->asLinkTo($linkEdit);
+                                        $linkFoto = route('admin.compos.photorel', ['compo' => $compo->id]);
+                                        return \Bootstrapper\Facades\Button::LINK('<i class="fas fa-pencil-alt"></i>')->asLinkTo($linkEdit)." | ".
+                                        \Bootstrapper\Facades\Button::LINK('<i class="fas fa-photo"></i>')->asLinkTo($linkFoto);
                                     })
                                 !!}
                             </div>

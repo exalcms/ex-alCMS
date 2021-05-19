@@ -8,19 +8,19 @@
                 <div class="col-md-12">
                     <div class="w-auto p-3">
                         <div class="panel-heading-admin">
-                            <h5>Imagem {{ $img->name }}</h5>
+                            <h5>Imagem {{ $photo->name }}</h5>
                         </div>
                         <div class="panel-body">
                             <div class="row btn-new-reset">
-                                {!! Button::primary('Voltar')->asLinkTo(route('admin.imgs.index')) !!}
-                                {!! Button::primary('Relacionar')->asLinkTo(route('admin.imgs.edit', ['img' => $img->id])) !!}
+                                {!! Button::primary('Voltar')->asLinkTo(route('admin.photos.index')) !!}
+                                {!! Button::primary('Relacionar')->asLinkTo(route('admin.photos.edit', ['photo' => $photo->id])) !!}
                                 {!! Button::danger('Delete')
-                                        ->asLinkTo(route('admin.imgs.destroy', ['img' => $img->id]))
+                                        ->asLinkTo(route('admin.photos.destroy', ['photo' => $photo->id]))
                                         ->addAttributes(['onclick' => 'event.preventDefault();document.getElementById("form-delete").submit();'])
                              !!}
                                 <?php $formDelete = FormBuilder::plain([
                                     'id' => 'form-delete',
-                                    'route' => ['admin.imgs.destroy', 'img' => $img->id],
+                                    'route' => ['admin.photos.destroy', 'photo' => $photo->id],
                                     'method' => 'DELETE',
                                     'style' => 'display:none',
                                 ]); ?>
@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div id="register-show">
                                     <div class="row bloco-div-show desk">
-                                        <img src="{{ asset($img->image_path) }}" width="200">
+                                        <img src="{{ asset($photo->photo_path) }}" width="200">
                                     </div>
                                 </div>
                             </div>

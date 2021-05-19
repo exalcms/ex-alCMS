@@ -9,7 +9,15 @@
                     <div class="w-auto p-3">
                         <div class="panel-heading-admin">
                             <div>
-                                <img src="{{asset('site/img/dir_eraldo_sec.jpg')}}" width="130px">
+                                <?php
+                                if(!$expresid->foto){
+                                    $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
+                                    $foto = $img->photo_path;
+                                }else{
+                                    $foto = $expresid->photo->photo_path;
+                                }
+                                ?>
+                                <img src="{!! asset($foto)!!}" width="130px">
                             </div>
                             <h5>Ex-Presidente: {{ $expresid->user->name_full }}</h5>
                         </div>

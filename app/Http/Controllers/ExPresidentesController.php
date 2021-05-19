@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Forms\ExPresidenteForm;
+use App\Forms\RelPhotoExPresForm;
 use App\Models\ExPresidente;
-use App\Models\Image;
+use App\Models\Imagem;
 use Illuminate\Http\Request;
 
 class ExPresidentesController extends Controller
@@ -16,7 +17,7 @@ class ExPresidentesController extends Controller
      */
     public function index()
     {
-        $expresids = ExPresidente::with('user', 'images')->paginate();
+        $expresids = ExPresidente::with('user', 'photo')->paginate();
         //dd($expresids);
         return view('admin.expresids.index', compact('expresids'));
     }
@@ -76,6 +77,7 @@ class ExPresidentesController extends Controller
      */
     public function edit(ExPresidente $expresid)
     {
+
         $form = \FormBuilder::create(ExPresidenteForm::class, [
             'url' => route('admin.expresids.update', ['expresid' => $expresid->id]),
             'method' => 'PUT',
@@ -84,6 +86,18 @@ class ExPresidentesController extends Controller
         ]);
 
         return view('admin.expresids.edit', compact('form'));
+    }
+
+    public function photorel(ExPresidente $expresid)
+    {
+        $form = \FormBuilder::create(RelPhotoExPresForm::class, [
+            'url' => route('admin.expresids.update', ['expresid' => $expresid->id]),
+            'method' => 'PUT',
+            'model' => $expresid,
+            'data' => ['id' => $expresid->id],
+        ]);
+
+        return view('admin.expresids.photo-rel', compact('form', 'expresid'));
     }
 
     /**
@@ -95,7 +109,19 @@ class ExPresidentesController extends Controller
      */
     public function update(Request $request, ExPresidente $expresid)
     {
-        //
+        $data = $request->all();
+        if(key_exists('photo_id', $data)){
+            $data['foto'] = true;
+        }
+
+        $expresid->fill($data);
+        $expresid->save();
+        if(key_exists('photo_id', $data)){
+            $request->session()->flash('msg', 'Foto anexada com sucesso');
+        }else{
+            $request->session()->flash('msg', 'Registro atualizado com sucesso');
+        }
+        return redirect()->route('admin.expresids.index');
     }
 
     /**

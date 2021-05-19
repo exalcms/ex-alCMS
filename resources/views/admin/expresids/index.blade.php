@@ -19,17 +19,17 @@
                                 {!!
                                     Table::withContents($expresids)->striped()
                                     ->callback('Detalhes', function ($field, $expresid){
-                                        $image = new \App\Models\Image();
-                                        $data = $expresid->images->all();
-                                        dd($data);
-                                        $image->fill($data);
-                                        dd($image);
-                                        if($expresid->foto_path == null){
-                                            $img = \App\Models\Image::where('id', '=', 1)->first();
-                                            $expresid->foto_path = $img->name;
+
+                                        if(!$expresid->foto){
+                                            $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
+                                            $foto = $img->name;
+                                        }else{
+                                            $img = \App\Models\Photo::where('id', '=', $expresid->photo_id)->first();
+                                            //dd($img);
+                                            $foto = $img->name;
                                         }
                                         return MediaObject::withContents([
-                                            'image' => asset('storage/'.$expresid->images),
+                                            'image' => asset('storage/'.$foto),
                                             'link' => '#',
                                             'heading' => $expresid->user->name_full,
                                             'body' => 'De '.$expresid->inicio.' até '.$expresid->final ,
@@ -38,8 +38,10 @@
                                     ->callback('Actions', function ($field, $expresid){
                                         $linkEdit = route('admin.expresids.edit', ['expresid' => $expresid->id]);
                                         $linkShow = route('admin.expresids.show', ['expresid' => $expresid->id]);
+                                        $linkFoto = route('admin.expresids.photorel', ['expresid' => $expresid->id]);
                                         return \Bootstrapper\Facades\Button::LINK('<i class="fas fa-pencil-alt"></i>')->asLinkTo($linkEdit)." | ".
-                                        \Bootstrapper\Facades\Button::LINK('<i class="fas fa-eye"></i>')->asLinkTo($linkShow);
+                                        \Bootstrapper\Facades\Button::LINK('<i class="fas fa-eye"></i>')->asLinkTo($linkShow)." | ".
+                                        \Bootstrapper\Facades\Button::LINK('<i class="fas fa-photo"></i>')->asLinkTo($linkFoto);
                                     })
                                 !!}
                             </div>

@@ -8,11 +8,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Image.
+ * Class Photo.
  *
  * @package namespace App\Models;
  */
-class Image extends Model implements Transformable, TableInterface
+class Photo extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
 
@@ -21,7 +21,7 @@ class Image extends Model implements Transformable, TableInterface
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'image_path', 'using', 'title', 'legenda' ];
+    protected $fillable = ['name', 'photo_path', 'origin_name' ,'using', 'title', 'legenda' ];
 
     public function getTableHeaders()
     {
@@ -34,9 +34,9 @@ class Image extends Model implements Transformable, TableInterface
             case 'Id':
                 return $this->id;
             case 'Nome':
-                return $this->name;
+                return $this->origin_name;
             case 'Caminho':
-                return  $this->image_path;
+                return  $this->photo_path;
         }
     }
 }

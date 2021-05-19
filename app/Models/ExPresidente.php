@@ -23,16 +23,16 @@ class ExPresidente extends Model implements Transformable, TableInterface
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'inicio', 'final', 'msg', 'publica', 'foto_path'];
+    protected $fillable = ['user_id', 'inicio', 'final', 'msg', 'publica', 'foto', 'photo_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function images()
+    public function photo()
     {
-        return $this->morphToMany(Image::class, 'imageable');
+        return $this->belongsTo(Photo::class);
     }
 
     public function getTableHeaders()

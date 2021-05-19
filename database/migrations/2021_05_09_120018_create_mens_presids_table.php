@@ -23,7 +23,7 @@ class CreateMensPresidsTable extends Migration
             $table->enum('publica', ['s', 'n'])->default('n');
             $table->enum('ativa', ['s', 'n'])->default('n');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->on('users')->references('id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
 		});
 	}

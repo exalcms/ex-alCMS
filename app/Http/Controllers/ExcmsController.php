@@ -18,14 +18,14 @@ class ExcmsController extends Controller
      */
     public function index()
     {
-        $dirPres = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 1)->first();
-        $dirVic = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 2)->first();
-        $dirSec = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 3)->first();
-        $dirFin = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 4)->first();
-        $dirJur = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 5)->first();
-        $dirCom = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 6)->first();
-        $dirCul = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 7)->first();
-        $dirEsp = DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 8)->first();
+        $dirPres = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 1)->first();
+        $dirVic = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 2)->first();
+        $dirSec = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 3)->first();
+        $dirFin = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 4)->first();
+        $dirJur = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 5)->first();
+        $dirCom = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 6)->first();
+        $dirCul = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 7)->first();
+        $dirEsp = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 8)->first();
         $menspre = MensPresid::with('user')->where(['ativa' => 's', 'publica' => 's'])->first();
 
         $assoc = ElementSite::orderBy('id', 'DESC')->first();

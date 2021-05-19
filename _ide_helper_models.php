@@ -170,15 +170,15 @@ namespace App\Models{
  * @property string|null $using
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Image newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Image newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Image query()
- * @method static \Illuminate\Database\Eloquent\Builder|Image whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Image whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Image whereImagePath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Image whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Image whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Image whereUsing($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem whereImagePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Imagem whereUsing($value)
  */
 	class Image extends \Eloquent implements \Prettus\Repository\Contracts\Transformable, \Bootstrapper\Interfaces\TableInterface {}
 }

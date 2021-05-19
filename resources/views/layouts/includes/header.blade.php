@@ -119,11 +119,11 @@
                                     <li><a href="{{route('admin.users.index')}}">Usuários</a></li>
                                     <li><a href="{{route('admin.assoc.index')}}">Associação</a></li>
                                     <li><a href="{{route('admin.elems.index')}}">Site Conteúdo</a></li>
-                                    <li><a href="{{route('admin.imgs.index')}}">Upload Fotos</a></li>
+                                    <li><a href="{{route('admin.photos.index')}}">Upload Fotos</a></li>
                                     <li><a href="{{route('admin.diret.index')}}">Diretoria</a></li>
                                     <li><a href="{{route('admin.compos.index')}}">Composição Dir.</a></li>
                                     <li><a href="{{route('admin.expresids.index')}}">Ex-Presidentes</a></li>
-                                    <?php $dirPres = App\Models\DiretoriaUser::with('user','diretoria')->where('id_diretoria', '=', 1)->first();  ?>
+                                    <?php $dirPres = App\Models\DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 1)->first();  ?>
                                     @if(Auth::user()->id == $dirPres->user->id || Auth::user()->id == 1)
                                     <li><a href="{{route('admin.menspres.index')}}">Mensagens Presi.</a> </li>
                                     @endif

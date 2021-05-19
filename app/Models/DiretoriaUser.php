@@ -21,21 +21,26 @@ class DiretoriaUser extends Model implements Transformable, TableInterface
      *
      * @var array
      */
-    protected $fillable = ['id_diretoria', 'id_user', 'ativo', 'inic_mand', 'fim_mand'];
+    protected $fillable = ['diretoria_id', 'user_id', 'ativo', 'inic_mand', 'fim_mand', 'photo_id', 'foto'];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function diretoria()
     {
-        return $this->belongsTo(Diretoria::class, 'id_diretoria', 'id');
+        return $this->belongsTo(Diretoria::class, 'diretoria_id', 'id');
+    }
+
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class, 'photo_id', 'id');
     }
 
     public function getTableHeaders()
     {
-        return ['Id', 'Cargo', 'Titular'];
+        return ['Id'];
     }
 
     public function getValueForHeader($header)
@@ -43,10 +48,6 @@ class DiretoriaUser extends Model implements Transformable, TableInterface
         switch ($header){
             case 'Id':
                 return $this->id;
-            case 'Cargo':
-                return $this->diretoria->cargo;
-            case 'Titular':
-                return $this->user->name_full;
         }
     }
 }

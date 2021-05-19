@@ -12,23 +12,23 @@
                         </div>
                         <div class="panel-body">
                             <div class="row btn-new-reset">
-                                {!! Button::primary('Novas Fotos')->asLinkTo(route('admin.imageUpload')) !!}
-                                {!! Button::primary('Limpar')->asLinkTo(route('admin.imgs.index')) !!}
+                                {!! Button::primary('Novas Fotos')->asLinkTo(route('admin.photoUpload')) !!}
+                                {!! Button::primary('Limpar')->asLinkTo(route('admin.photos.index')) !!}
                             </div>
                             <div class="row" style="margin-left: 10px; margin-right: 10px;">
                                 {!!
-                                    Table::withContents($imgs->items())->striped()
-                                    ->callback('Detalhes', function($field, $img){
+                                    Table::withContents($photos->items())->striped()
+                                    ->callback('Detalhes', function($field, $photo){
                                         return MediaObject::withContents([
-                                            'image' => asset('storage/'.$img->name),
-                                            'link' => asset($img->image_path),
-                                            'heading' => $img->using,
-                                            'body' => 'Nome do arquivo - '.$img->name,
+                                            'image' => asset('storage/'.$photo->name),
+                                            'link' => asset($photo->photo_path),
+                                            'heading' => $photo->using,
+                                            'body' => 'Nome do arquivo - '.$photo->origin_name,
                                             ]);
                                     })
-                                    ->callback('Actions', function ($field, $img){
-                                        $linkDel = route('admin.imgs.show', ['img' => $img->id]);
-                                        $linkShow = route('admin.imgs.show', ['img' => $img->id]);
+                                    ->callback('Actions', function ($field, $photo){
+                                        $linkDel = route('admin.photos.show', ['photo' => $photo->id]);
+                                        $linkShow = route('admin.photos.show', ['photo' => $photo->id]);
                                         return \Bootstrapper\Facades\Button::LINK('<i class="fas fa-eye"></i>')->asLinkTo($linkShow)." | ".
                                         \Bootstrapper\Facades\Button::LINK('<i class="fas fa-trash-alt"></i>')->asLinkTo($linkDel);
                                     })
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         </div>
-                    {{ $imgs->links() }}
+                    {{ $photos->links() }}
                 </div>
             </div>
         </div>

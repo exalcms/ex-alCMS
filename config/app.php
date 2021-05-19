@@ -240,7 +240,7 @@ return [
         'Table' => Bootstrapper\Facades\Table::class,
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
-        'Imagem' => Folklore\Image\Facade::class,
+        'Image' => Folklore\Image\Facade::class,
 
     ],
 

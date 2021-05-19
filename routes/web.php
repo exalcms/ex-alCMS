@@ -7,6 +7,7 @@ use App\Http\Controllers\ElementSitesController;
 use App\Http\Controllers\ExPresidentesController;
 use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\MensPresidsController;
+use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcmsController;
@@ -44,13 +45,15 @@ Route::group([
     Route::post('elems/ele', [ElementSitesController::class, 'atualiz'])->name('elems.myupdate');
     Route::resource('diret', DiretoriasController::class);
     Route::resource('compos', DiretoriaUsersController::class);
+    Route::get('compos/{compo}/photo-rel', [DiretoriaUsersController::class, 'photorel'])->name('compos.photorel');
     Route::resource('menspres', MensPresidsController::class);
     Route::resource('expresids', ExPresidentesController::class);
+    Route::get('expresids/{expresid}/photo-rel', [ExPresidentesController::class, 'photorel'])->name('expresids.photorel');
 
 
     Route::post('ckeditor/upload', [ElementSitesController::class, 'upload'])->name('ckeditor.image-upload');
-    Route::resource('imgs', FileUpload::class);
-    Route::get('image-upload', [FileUpload::class, 'createForm'])->name('imgs');
-    Route::post('image-upload', [FileUpload::class, 'fileUpload'])->name('imageUpload');
+    Route::resource('photos', PhotosController::class);
+    Route::get('photo-upload', [PhotosController::class, 'upload'])->name('photos');
+    Route::post('photo-upload', [PhotosController::class, 'photoUpload'])->name('photoUpload');
 
 });

@@ -21,9 +21,11 @@ class CreateExPresidentesTable extends Migration
             $table->year('final');
             $table->text('msg');
             $table->enum('publica', ['s', 'n'])->default('s');
-            $table->string('foto_path')->nullable();
+            $table->boolean('foto')->default(false);
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->on('users')->references('id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('photo_id')->nullable();
+            $table->foreign('photo_id')->references('id')->on('photos');
             $table->softDeletes();
             $table->timestamps();
 		});

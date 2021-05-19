@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateImagesTable.
+ * Class CreatePhotosTable.
  */
-class CreateImagesTable extends Migration
+class CreatePhotosTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -15,10 +15,11 @@ class CreateImagesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('images', function(Blueprint $table) {
+		Schema::create('photos', function(Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image_path');
+            $table->string('photo_path');
+            $table->string('origin_name');
             $table->string('using')->nullable();
             $table->string('title')->nullable();
             $table->string('legenda')->nullable();
@@ -33,6 +34,6 @@ class CreateImagesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('images');
+		Schema::drop('photos');
 	}
 }

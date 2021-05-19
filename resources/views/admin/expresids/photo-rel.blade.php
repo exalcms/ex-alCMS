@@ -9,20 +9,27 @@
                     <div class="w-auto p-3">
                         <div class="panel-heading-admin">
                             <div>
-                                <img src="{{asset('storage/'.$img->name)}}" width="130px">
+                                <?php
+                                    if(!$expresid->foto){
+                                        $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
+                                        $foto = $img->name;
+                                    }else{
+                                        $foto = $expresid->photo->name;
+                                    }
+                                 ?>
+                                    <img src="{!! asset('storage/'.$foto)!!}" width="60px">
+
                             </div>
                             <h5>Relacionar foto com usuário</h5>
                         </div>
                         <div class="panel-body">
                             <div class="row btn-new-reset">
-                                {!! Button::primary('Voltar')->asLinkTo(route('admin.imgs.index')) !!}
+                                {!! Button::primary('Voltar')->asLinkTo(route('admin.expresids.index')) !!}
                             </div>
                             <div class="form-admin">
                                 <?php $icon = '<i class="fas fa-save"></i>'; ?>
                                 {!!
-                                        form($form->add('image_id', 'hidden',[
-                                            'value' => $img->id, 'label' => 'Imagem nome',
-                                            ])->add('salvar', 'submit', [
+                                        form($form->add('salvar', 'submit', [
                                             'attr' => ['class' => 'btn btn-primary btn-block', 'style' => 'width:120px'],
                                             'label' => $icon.' Salvar'
                                          ]))

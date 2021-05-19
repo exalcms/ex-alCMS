@@ -17,13 +17,16 @@ class CreateDiretoriaUsersTable extends Migration
 	{
 		Schema::create('diretoria_users', function(Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_diretoria');
-            $table->foreign('id_diretoria')->references('id')->on('diretorias');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('diretoria_id');
+            $table->foreign('diretoria_id')->references('id')->on('diretorias');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->enum('ativo', ['s', 'n'])->default('s');
             $table->year('inic_mand')->nullable();
             $table->year('fim_mand')->nullable();
+            $table->boolean('foto')->default(false);
+            $table->unsignedBigInteger('photo_id')->nullable();
+            $table->foreign('photo_id')->references('id')->on('photos');
             $table->timestamps();
 		});
 	}

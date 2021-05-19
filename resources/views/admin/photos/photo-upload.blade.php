@@ -5,9 +5,9 @@
         <div id="admin-content">
     <div class="container mt-5 mb-5">
         <h3 class="text-center mb-5">Upload de Imagens para o site</h3>
-        <form action="{{route('admin.imageUpload')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.photoUpload')}}" method="post" enctype="multipart/form-data">
             @csrf
-            @if ($message = Session::get('success'))
+            @if ($message = Session::get('msg'))
                 <div class="alert alert-success">
                     <strong>{{ $message }}</strong>
                 </div>
@@ -28,12 +28,22 @@
             </div>
 
             <div class="custom-file">
-                <input type="file" name="imageFile[]" class="custom-file-input" id="images" multiple="multiple">
+                <input type="file" name="photoFile[]" class="custom-file-input" id="images" multiple="multiple">
                 <label class="custom-file-label" for="images">Escolha as imagens</label>
             </div>
             <div class="custom-file mt-2">
-                <x-jet-label for="using" value="{{ __('Aplicação das imagens') }}" />
-                <x-jet-input id="using" class="block mt-1 w-full" type="text" name="using" :value="old('using')" />
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="using">Uso das Fotos</label>
+                    </div>
+                    <select class="custom-select" id="using" name="using">
+                        <option selected>Escolher...</option>
+                        <option value="Diretoria">Diretoria</option>
+                        <option value="Galeria">Galeria</option>
+                        <option value="Turmas">Turmas</option>
+                        <option value="Eventos">Eventos</option>
+                    </select>
+                </div>
             </div>
 
             <div class="custom-file mt-2">
