@@ -32,12 +32,12 @@ class ExPresidente extends Model implements Transformable, TableInterface
 
     public function photo()
     {
-        return $this->belongsTo(Photo::class);
+        return $this->belongsTo(Photo::class, 'photo_id', 'id');
     }
 
     public function getTableHeaders()
     {
-        return [ 'Id'];
+        return ['Id'];
     }
 
     public function getValueForHeader($header)

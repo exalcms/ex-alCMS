@@ -20,7 +20,7 @@ class CreateExPresidentesTable extends Migration
             $table->year('inicio');
             $table->year('final');
             $table->text('msg');
-            $table->enum('publica', ['s', 'n'])->default('s');
+            $table->enum('publica', ['s', 'n'])->default('n');
             $table->boolean('foto')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

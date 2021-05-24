@@ -158,7 +158,7 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
                         <div class="member">
-                            <img src="{{asset('site/img/dir_joao_pres.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset($dirPres->photo->photo_path)}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4>{!! $dirPres->user->name !!}</h4>
@@ -175,7 +175,7 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="200">
                         <div class="member">
-                            <img src="{{asset('site/img/dir_valmar_vic.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset($dirVic->photo->photo_path)}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4>{!! $dirVic->user->name !!}</h4>
@@ -192,7 +192,7 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="300">
                         <div class="member">
-                            <img src="{{asset('site/img/dir_eraldo_sec.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset($dirSec->photo->photo_path)}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4>{!! $dirSec->user->name !!}</h4>
@@ -209,7 +209,7 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="400">
                         <div class="member">
-                            <img src="{{asset('site/img/dir_placido_fin.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset($dirFin->photo->photo_path)}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4>{!! $dirFin->user->name !!}</h4>
@@ -232,7 +232,7 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
                         <div class="member">
-                            <img src="{{asset('site/img/dir_raul_com.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset($dirCom->photo->photo_path)}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4>{!! $dirCom->user->name !!}</h4>
@@ -249,7 +249,7 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="200">
                         <div class="member">
-                            <img src="{{asset('site/img/dir_maciel_cult.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset($dirCul->photo->photo_path)}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4>{!! $dirCul->user->name !!}</h4>
@@ -266,7 +266,7 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="300">
                         <div class="member">
-                            <img src="{{asset('site/img/dir_cortes_esp.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset($dirEsp->photo->photo_path)}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4>{!! $dirEsp->user->name !!}</h4>
@@ -283,7 +283,7 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
                         <div class="member">
-                            <img src="{{asset('site/img/dir_sem_foto.jpg')}}" class="img-fluid" alt="">
+                            <img src="{{asset($dirJur->photo->photo_path)}}" class="img-fluid" alt="">
                             <div class="member-info">
                                 <div class="member-info-content">
                                     <h4>{!! $dirJur->user->name !!}</h4>
@@ -312,55 +312,18 @@
                 </header>
 
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
-
+                    <div class="col-lg-10">
                         <div class="owl-carousel testimonials-carousel">
+                            @foreach($expresids as $expresid)
+                                <div class="testimonial-item">
+                                    <img src="{{asset($expresid->photo->photo_path)}}" class="testimonial-img"/>
+                                    <h3>{!! $expresid->user->name !!}</h3>
+                                    <h4>{!! 'De '.$expresid->inicio.' - '.$expresid->final !!}</h4>
 
-                            <div class="testimonial-item">
-                                <img src="{{asset('site/img/testimonial-1.jpg')}}" class="testimonial-img" alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
-                                <p>
-                                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                                </p>
-                            </div>
+                                        {!! $expresid->msg !!}
 
-                            <div class="testimonial-item">
-                                <img src="{{asset('site/img/testimonial-2.jpg')}}" class="testimonial-img" alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                                <p>
-                                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                                </p>
-                            </div>
-
-                            <div class="testimonial-item">
-                                <img src="{{asset('site/img/testimonial-3.jpg')}}" class="testimonial-img" alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                                <p>
-                                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                                </p>
-                            </div>
-
-                            <div class="testimonial-item">
-                                <img src="{{asset('site/img/testimonial-4.jpg')}}" class="testimonial-img" alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                                <p>
-                                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                                </p>
-                            </div>
-
-                            <div class="testimonial-item">
-                                <img src="{{asset('site/img/testimonial-5.jpg')}}" class="testimonial-img" alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                                <p>
-                                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                                </p>
-                            </div>
-
+                                </div>
+                            @endforeach
                         </div>
 
                     </div>
@@ -589,11 +552,10 @@
             <div class="container" data-aos="fade-up">
                 <header class="section-header">
                     <h3>Noticias e Informes</h3>
-                    <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.</p>
+                    <p>Fique por dentro de tudo que acontece na Associação, eventos e fatos que merecem a sua atenção.</p>
                 </header>
 
                 <div class="row row-eq-height justify-content-center">
-
                     <div class="col-lg-4 mb-4">
                         <div class="card" data-aos="zoom-in" data-aos-delay="100">
                             <i class="fa fa-diamond"></i>
@@ -625,6 +587,11 @@
                                 <a href="#" class="readmore">Read more </a>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row-cols-12 ml-3">
+                    <div class="footercad-noticia">
+                        <a href="#" class="maisnoti">Mais notícias e informes</a>
                     </div>
                 </div>
             </div>

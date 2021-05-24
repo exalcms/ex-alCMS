@@ -6,6 +6,7 @@ use App\Models\Association;
 use App\Models\Diretoria;
 use App\Models\DiretoriaUser;
 use App\Models\ElementSite;
+use App\Models\ExPresidente;
 use App\Models\MensPresid;
 use Illuminate\Http\Request;
 
@@ -18,19 +19,21 @@ class ExcmsController extends Controller
      */
     public function index()
     {
-        $dirPres = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 1)->first();
-        $dirVic = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 2)->first();
-        $dirSec = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 3)->first();
-        $dirFin = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 4)->first();
-        $dirJur = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 5)->first();
-        $dirCom = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 6)->first();
-        $dirCul = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 7)->first();
-        $dirEsp = DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 8)->first();
+        $dirPres = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 1)->first();
+        $dirVic = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 2)->first();
+        $dirSec = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 3)->first();
+        $dirFin = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 4)->first();
+        $dirJur = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 5)->first();
+        $dirCom = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 6)->first();
+        $dirCul = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 7)->first();
+        $dirEsp = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 8)->first();
         $menspre = MensPresid::with('user')->where(['ativa' => 's', 'publica' => 's'])->first();
+        $expresids = ExPresidente::with('photo','user')->where('publica', '=', 's')->get();
+
 
         $assoc = ElementSite::orderBy('id', 'DESC')->first();
         return view('welcome', compact('assoc', 'dirFin', 'dirPres', 'dirSec', 'dirVic', 'dirJur',
-            'dirCom', 'dirCul', 'dirEsp', 'menspre'));
+            'dirCom', 'dirCul', 'dirEsp', 'menspre', 'expresids'));
     }
 
     public function detail()

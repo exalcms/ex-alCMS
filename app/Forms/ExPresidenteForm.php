@@ -46,7 +46,7 @@ class ExPresidenteForm extends Form
                     'wrapper' => ['class' => 'choice-wrapper-my'],
                     'label_attr' => ['class' => 'label-class'],
                 ],
-                'selected' => ['s'],
+                'selected' => $this->model ? [$this->model->publica] : ['s'],
                 'multiple' => false,
                 'expanded' => true,
             ]);
