@@ -29,11 +29,10 @@ class ExcmsController extends Controller
         $dirEsp = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 8)->first();
         $menspre = MensPresid::with('user')->where(['ativa' => 's', 'publica' => 's'])->first();
         $expresids = ExPresidente::with('photo','user')->where('publica', '=', 's')->get();
-
-
+        $exCMS = Association::orderBy('id', 'DESC')->first();
         $assoc = ElementSite::orderBy('id', 'DESC')->first();
         return view('welcome', compact('assoc', 'dirFin', 'dirPres', 'dirSec', 'dirVic', 'dirJur',
-            'dirCom', 'dirCul', 'dirEsp', 'menspre', 'expresids'));
+            'dirCom', 'dirCul', 'dirEsp', 'menspre', 'expresids', 'exCMS'));
     }
 
     public function detail()

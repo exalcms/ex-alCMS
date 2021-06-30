@@ -48,6 +48,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{asset('site/css/style.css')}}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d48e8b6147.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -84,7 +85,7 @@
                     </ul>
                 </li>
                 <li><a href="http://www.esfcex.eb.mil.br/" target="_blank" >CMS</a></li>
-                <li><a href="{{route('/')}}#contact">Contato</a></li>
+                <li><a href="{{route('mensagems.create')}}">Contato</a></li>
                 <li><a href="{{ route('register') }}">Cadastro</a></li>
                 <li><a href="{{ route('login') }}">Login</a></li>
             </ul>
@@ -114,7 +115,7 @@
                     <ul>
                         <li class="active"><a href="{{route('dashboard')}}">Loja</a></li>
                         @if(Auth::user()->role == 1)
-                            <li class="drop-down"><a href="{{ route('admin.dashboard-admin') }}">Admin</a>
+                            <li class="drop-down"><a href="{{ route('admin.dashboard-admin') }}">Admin-Cont.</a>
                                 <ul>
                                     <li><a href="{{route('admin.users.index')}}">Usuários</a></li>
                                     <li><a href="{{route('admin.assoc.index')}}">Associação</a></li>
@@ -127,6 +128,11 @@
                                     @if(Auth::user()->id == $dirPres->user->id || Auth::user()->id == 1)
                                     <li><a href="{{route('admin.menspres.index')}}">Mensagens Presi.</a> </li>
                                     @endif
+                                </ul>
+                            </li>
+                            <li class="drop-down"><a href="#">Admin-Func.</a>
+                                <ul>
+                                    <li><a href="{{route('admin.mensagems.index')}}">Mensagens</a></li>
                                     <li><a href="#">Galerias</a></li>
                                     <li><a href="#">Avisos/Notícias</a></li>
                                     <li><a href="#">Nossa loja</a></li>
@@ -141,6 +147,7 @@
                                     <li><a href="#">Upload de fotos</a></li>
                                     <li><a href="#">Envio de mensagens</a></li>
                                     <li><a href="#">Networks</a></li>
+                                    <li><a href="{{route('mensagems.create')}}">Contato</a></li>
                                 </ul>
                             </li>
                         @endif

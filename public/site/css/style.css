@@ -1966,6 +1966,13 @@ fim do history
     justify-content: space-between;
 }
 
+.deskmy{
+    width: 95%;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .nome{
     width: 48%;
 }
@@ -2173,6 +2180,14 @@ fim do history
     border-radius: 15px;
 }
 
+.msgm-show{
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+}
+
 .label-show-quem{
     font-weight: bold;
     font-size: medium;
@@ -2206,3 +2221,4 @@ fim do history
     transition: 0.3s ease-in-out;
     border-bottom: #00458f solid 2px;
 }
+

@@ -6,6 +6,8 @@ use App\Http\Controllers\DiretoriaUsersController;
 use App\Http\Controllers\ElementSitesController;
 use App\Http\Controllers\ExPresidentesController;
 use App\Http\Controllers\FileUpload;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\MensagemsControler;
 use App\Http\Controllers\MensPresidsController;
 use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\UsersController;
@@ -29,10 +31,14 @@ Route::get('/', [ExcmsController::class, 'index'])->name('/');
 Route::get('/detail', [ExcmsController::class, 'detail'])->name('detail');
 Route::get('/history', [ExcmsController::class, 'history'])->name('history');
 Route::get('/message-pres', [ExcmsController::class, 'messagePres'])->name('message-pres');
+Route::get('/mensagem', [MensagemsControler::class, 'create'])->name('mensagems.create');
+Route::post('mensagems', [MensagemsControler::class, 'store'])->name('mensagems.store');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+//Route::get('/send-email', [MailController::class, 'sendEmail']);
 
 Route::group([
     'prefix' => 'admin' , 'as' => 'admin.', 'middleware' => 'can:admin'
@@ -55,5 +61,12 @@ Route::group([
     Route::resource('photos', PhotosController::class);
     Route::get('photo-upload', [PhotosController::class, 'upload'])->name('photos');
     Route::post('photo-upload', [PhotosController::class, 'photoUpload'])->name('photoUpload');
+
+    Route::get('mensagems/index', [MensagemsControler::class, 'index'])->name('mensagems.index');
+    Route::get('mensagems/{mensagem}', [MensagemsControler::class, 'show'])->name('mensagems.show');
+    Route::get('mensagems/{mensagem}/edit', [MensagemsControler::class, 'edit'])->name('mensagems.edit');
+    Route::put('mensagems/{mensagem}', [MensagemsControler::class, 'update'])->name('mensagems.update');
+    Route::delete('mensagems/{mensagem}', [MensagemsControler::class, 'destroy'])->name('mensagems.destroy');
+    Route::post('send-emails/{mensagem}', [MensagemsControler::class, 'sendEmail'])->name('sendEmail');
 
 });

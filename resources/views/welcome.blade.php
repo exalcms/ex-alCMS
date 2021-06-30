@@ -29,10 +29,7 @@
 
                 <header class="section-header">
                     <h3>Quem Somos</h3>
-                    @if($assoc instanceof \App\Models\ElementSite)
                     <p>{!! $assoc->quem_somos !!}</p>
-                    @else<p> </p>
-                    @endif
                 </header>
 
                 <div class="row about-container">
@@ -134,7 +131,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                             <div class="testimonial-item">
-                                <img src="{{asset('site/img/dir_joao_pres.jpg')}}" class="testimonial-img" alt="">
+                                <img src="{{asset($dirPres->photo->photo_path)}}" class="testimonial-img" alt="">
                                 <h3>{!! $dirPres->user->nome_guerra !!}</h3>
                                 <h4>{!! $dirPres->diretoria->cargo !!}</h4>
                                 <p>{!! $menspre->introd !!}</p>
@@ -814,73 +811,6 @@
             </div>
 
         </section><!-- End Clients Section -->
-
-        <!-- ======= Contact Section ======= -->
-        <section id="contact">
-            <div class="container-fluid" data-aos="fade-up">
-
-                <div class="section-header">
-                    <h3>Fale Conosco</h3>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-6">
-                        <div class="map mb-4 mb-lg-0">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2655.8016948656236!2d-38.458088792920556!3d-12.996093875683803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scolegio%20militar%20de%20salvador!5e0!3m2!1spt-BR!2sbr!4v1603056454167!5m2!1spt-BR!2sbr" frameborder="0" style="border:0; width: 100%; height: 312px;" allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-md-5 info">
-                                <i class="ion-ios-location-outline"></i>
-                                <p>A108 Adam Street, NY 535022</p>
-                            </div>
-                            <div class="col-md-4 info">
-                                <i class="ion-ios-email-outline"></i>
-                                <p>info@example.com</p>
-                            </div>
-                            <div class="col-md-3 info">
-                                <i class="ion-ios-telephone-outline"></i>
-                                <p>+1 5589 55488 55</p>
-                            </div>
-                        </div>
-
-                        <div class="form">
-                            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                                <div class="form-row">
-                                    <div class="form-group col-lg-6">
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Seu Nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                        <div class="validate"></div>
-                                    </div>
-                                    <div class="form-group col-lg-6">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" />
-                                        <div class="validate"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Assunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                                    <div class="validate"></div>
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensagem"></textarea>
-                                    <div class="validate"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="loading">Processando</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Sua mensagem foi recebida. Obrigado!</div>
-                                </div>
-                                <div class="text-center"><button type="submit" title="Send Message">Enviar Mensagem</button></div>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Contact Section -->
 
     </main><!-- End #main -->
 
