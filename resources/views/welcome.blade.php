@@ -60,9 +60,12 @@
                     </div>
 
                     <div class="col-lg-6 background order-lg-2" data-aos="zoom-in">
-                        <img src="{{asset('site/img/imgs_cms/cms_atual1.jpg')}}" class="img-fluid" alt="">
-                        <div class="mt-3"><h6>Legenda foto 1</h6></div>
+                        <img src="{{asset('site/img/imgs_cms/cms_pitangueiras.jpg')}}" class="img-fluid" alt="">
+                        <div class="mt-3"><h6 style="font-style: italic">A história começa na sede da Pitangueiras</h6></div>
                         <div class="mt-5"><img src="{{asset('site/img/imgs_cms/cms_pituba.jpg')}}" class="img-fluid" alt=""></div>
+                        <div class="mt-3"><h6 style="font-style: italic">Em seguida mudamos para a Pituba</h6></div>
+                        <div class="mt-5"><img src="{{asset('site/img/imgs_cms/cms_atual1.jpg')}}" class="img-fluid" alt=""></div>
+                        <div class="mt-3"><h6 style="font-style: italic">Hoje, ainda na Pituba, mas em uma sede própria do CMS</h6></div>
                     </div>
                 </div>
 

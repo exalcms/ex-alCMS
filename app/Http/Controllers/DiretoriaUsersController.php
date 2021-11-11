@@ -44,7 +44,7 @@ class DiretoriaUsersController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
+        //dd($data);
         DiretoriaUser::create($data);
         $request->session()->flash('msg', 'Registro salvo com sucesso!');
         return redirect()->back();

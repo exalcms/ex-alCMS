@@ -125,7 +125,7 @@
                                     <li><a href="{{route('admin.compos.index')}}">Composição Dir.</a></li>
                                     <li><a href="{{route('admin.expresids.index')}}">Ex-Presidentes</a></li>
                                     <?php $dirPres = App\Models\DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 1)->first();  ?>
-                                    @if(Auth::user()->id == $dirPres->user->id || Auth::user()->id == 1)
+                                    @if( Auth::user()->id == 1)
                                     <li><a href="{{route('admin.menspres.index')}}">Mensagens Presi.</a> </li>
                                     @endif
                                 </ul>

@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
-        "folklore/laravel-image": "9999999-dev",
+        "folklore/laravel-image": "dev-main",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "kris/laravel-form-builder": "^1.40",
@@ -58,7 +58,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "php artisan ide-helper:generate",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
             "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [

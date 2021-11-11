@@ -28,7 +28,7 @@ class ExcmsController extends Controller
         $dirCul = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 7)->first();
         $dirEsp = DiretoriaUser::with('user','diretoria', 'photo')->where('diretoria_id', '=', 8)->first();
         $menspre = MensPresid::with('user')->where(['ativa' => 's', 'publica' => 's'])->first();
-        $expresids = ExPresidente::with('photo','user')->where('publica', '=', 's')->get();
+        $expresids = ExPresidente::with('photo','user')->where('publica', '=', 's')->orderBy('inicio', 'ASC')->get();
         $exCMS = Association::orderBy('id', 'DESC')->first();
         $assoc = ElementSite::orderBy('id', 'DESC')->first();
         return view('welcome', compact('assoc', 'dirFin', 'dirPres', 'dirSec', 'dirVic', 'dirJur',

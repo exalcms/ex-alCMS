@@ -12,7 +12,7 @@ class DiretoriaUserForm extends Form
     public function buildForm()
     {
         $this
-            ->add('id_diretoria', 'choice', [
+            ->add('diretoria_id', 'choice', [
                 'label' => 'Cargo',
                 'choices' => Diretoria::where('ativo', '=', 's')->pluck('cargo', 'id')->toArray(),
                 'choice_options' => [
@@ -23,7 +23,7 @@ class DiretoriaUserForm extends Form
                 'multiple' => false,
                 'expanded' => false,
             ])
-            ->add('id_user', 'choice', [
+            ->add('user_id', 'choice', [
                 'label' => 'Titular',
                 'choices' => User::where('role', '<>', 3)->orderBy('name_full', 'ASC')->pluck('name_full', 'id')->toArray(),
                 'choice_options' => [

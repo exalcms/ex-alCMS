@@ -65,7 +65,7 @@ class MensPresidsController extends Controller
         }
 
         //regra temporária para testes comentar em produção
-        $data['user_id'] = 26;
+        //$data['user_id'] = 26;
         //dd($data);
         MensPresid::create($data);
         $request->session()->flash('msg', 'Mensagem criada com sucesso');
