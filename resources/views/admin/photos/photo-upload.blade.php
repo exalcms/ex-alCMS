@@ -39,6 +39,7 @@
                     <select class="custom-select" id="using" name="using">
                         <option selected>Escolher...</option>
                         <option value="Diretoria">Diretoria</option>
+                        <option value="Convenio">Convênio</option>
                         <option value="Galeria">Galeria</option>
                         <option value="Turmas">Turmas</option>
                         <option value="Eventos">Eventos</option>

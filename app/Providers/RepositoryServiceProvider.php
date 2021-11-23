@@ -7,6 +7,8 @@ use App\Repositories\AssociationRepository;
 use App\Repositories\AssociationRepositoryEloquent;
 use App\Repositories\CityRepository;
 use App\Repositories\CityRepositoryEloquent;
+use App\Repositories\ConvenioRepository;
+use App\Repositories\ConvenioRepositoryEloquent;
 use App\Repositories\CountryRepository;
 use App\Repositories\CountryRepositoryEloquent;
 use App\Repositories\DiretoriaRepository;
@@ -48,6 +50,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(MensPresidRepository::class, MensPresidRepositoryEloquent::class);
         $this->app->bind(ExPresidenteRepository::class, ExPresidenteRepositoryEloquent::class);
         $this->app->bind(MensagemRepository::class, MensagemRepositoryEloquent::class);
+        $this->app->bind(ConvenioRepository::class, ConvenioRepositoryEloquent::class);
         //:end-bindings:
     }
 

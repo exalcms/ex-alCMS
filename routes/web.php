@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssociationsController;
+use App\Http\Controllers\ConvenioController;
 use App\Http\Controllers\DiretoriasController;
 use App\Http\Controllers\DiretoriaUsersController;
 use App\Http\Controllers\ElementSitesController;
@@ -29,10 +30,14 @@ use App\Http\Controllers\ExcmsController;
 
 Route::get('/', [ExcmsController::class, 'index'])->name('/');
 Route::get('/detail', [ExcmsController::class, 'detail'])->name('detail');
+Route::get('/detail-conv/{convenio}', [ExcmsController::class, 'detailConv'])->name('detail-conv');
+Route::get('/consult/{convenio}', [ExcmsController::class, 'consultConv'])->name('consult');
+Route::post('consult-cpf', [ExcmsController::class, 'consultCPF'])->name('consult-cpf');
 Route::get('/history', [ExcmsController::class, 'history'])->name('history');
 Route::get('/message-pres', [ExcmsController::class, 'messagePres'])->name('message-pres');
 Route::get('/mensagem', [MensagemsControler::class, 'create'])->name('mensagems.create');
 Route::post('mensagems', [MensagemsControler::class, 'store'])->name('mensagems.store');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -55,6 +60,8 @@ Route::group([
     Route::resource('menspres', MensPresidsController::class);
     Route::resource('expresids', ExPresidentesController::class);
     Route::get('expresids/{expresid}/photo-rel', [ExPresidentesController::class, 'photorel'])->name('expresids.photorel');
+    Route::resource('convenios', ConvenioController::class);
+    Route::get('convenios/{convenio}/photo-rel', [ConvenioController::class, 'photorel'])->name('convenios.photorel');
 
 
     Route::post('ckeditor/upload', [ElementSitesController::class, 'upload'])->name('ckeditor.image-upload');

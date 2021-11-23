@@ -133,6 +133,7 @@
                             <li class="drop-down"><a href="#">Admin-Func.</a>
                                 <ul>
                                     <li><a href="{{route('admin.mensagems.index')}}">Mensagens</a></li>
+                                    <li><a href="{{route('admin.convenios.index')}}">Convênios</a></li>
                                     <li><a href="#">Galerias</a></li>
                                     <li><a href="#">Avisos/Notícias</a></li>
                                     <li><a href="#">Nossa loja</a></li>
