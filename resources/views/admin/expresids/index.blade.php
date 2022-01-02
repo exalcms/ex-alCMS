@@ -22,18 +22,18 @@
 
                                         if(!$expresid->foto){
                                             $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
-                                            $foto = $img->name;
+                                            $foto = $img->photo_path;
                                         }else{
                                             $img = \App\Models\Photo::where('id', '=', $expresid->photo_id)->first();
                                             //dd($img);
-                                            $foto = $img->name;
+                                            $foto = $img->photo_path;
                                         }
                                         return MediaObject::withContents([
-                                            'image' => asset('storage/'.$foto),
+                                            'image' => asset($foto),
                                             'link' => '#',
                                             'heading' => $expresid->user->name_full,
                                             'body' => 'De '.$expresid->inicio.' até '.$expresid->final ,
-                                            ]);
+                                            ])->addClass(['mo-galeria']);
                                     })
                                     ->callback('Actions', function ($field, $expresid){
                                         $linkEdit = route('admin.expresids.edit', ['expresid' => $expresid->id]);

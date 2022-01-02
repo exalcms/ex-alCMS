@@ -138,7 +138,6 @@ class ConvenioController extends Controller
      */
     public function update(Request $request, Convenio $convenio)
     {
-        //$form = \FormBuilder::create(RelPhotoConvenioForm::class);
         $data = $request->all();
 
         if (key_exists('photo_id', $data)){

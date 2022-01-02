@@ -88,6 +88,19 @@
 
 <!-- Template Main JS File -->
 <script src="{{asset('site/js/main.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //Para fins de depuração:
+        console.log("Entrei aqui.");
+        $("#checkTodos_0").click(function(){
+            //Para fins de depuração:
+            console.log("Checkbox mestre foi clicado!");
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+        console.log("saiu aqui.");
+    });
+
+</script>
 <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function () {

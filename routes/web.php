@@ -7,6 +7,8 @@ use App\Http\Controllers\DiretoriaUsersController;
 use App\Http\Controllers\ElementSitesController;
 use App\Http\Controllers\ExPresidentesController;
 use App\Http\Controllers\FileUpload;
+use App\Http\Controllers\GaleryController;
+use App\Http\Controllers\LogadoController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MensagemsControler;
 use App\Http\Controllers\MensPresidsController;
@@ -30,6 +32,8 @@ use App\Http\Controllers\ExcmsController;
 
 Route::get('/', [ExcmsController::class, 'index'])->name('/');
 Route::get('/detail', [ExcmsController::class, 'detail'])->name('detail');
+Route::get('/galery/{galery}', [ExcmsController::class, 'galery'])->name('galery');
+Route::get('/galeries', [ExcmsController::class, 'galeries'])->name('galeries');
 Route::get('/detail-conv/{convenio}', [ExcmsController::class, 'detailConv'])->name('detail-conv');
 Route::get('/consult/{convenio}', [ExcmsController::class, 'consultConv'])->name('consult');
 Route::post('consult-cpf', [ExcmsController::class, 'consultCPF'])->name('consult-cpf');
@@ -44,6 +48,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 //Route::get('/send-email', [MailController::class, 'sendEmail']);
+
+Route::group([
+    'prefix' => 'logado', 'as' => 'logado.', 'middleware' => 'can:logado'
+], function (){
+    Route::get('loja', [LogadoController::class, 'index'])->name('detail');
+});
 
 Route::group([
     'prefix' => 'admin' , 'as' => 'admin.', 'middleware' => 'can:admin'
@@ -62,6 +72,8 @@ Route::group([
     Route::get('expresids/{expresid}/photo-rel', [ExPresidentesController::class, 'photorel'])->name('expresids.photorel');
     Route::resource('convenios', ConvenioController::class);
     Route::get('convenios/{convenio}/photo-rel', [ConvenioController::class, 'photorel'])->name('convenios.photorel');
+    Route::resource('galeries', GaleryController::class);
+    Route::get('galeries/{galery}/photo-rel', [GaleryController::class, 'photorel'])->name('galeries.photorel');
 
 
     Route::post('ckeditor/upload', [ElementSitesController::class, 'upload'])->name('ckeditor.image-upload');

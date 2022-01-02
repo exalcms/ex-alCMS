@@ -11343,19 +11343,6 @@
         {
                         return \Illuminate\Routing\ResponseFactory::hasMacro($name);
         }
-                    /**
-         * 
-         *
-         * @see \Folklore\Image\ServiceProvider::bootHttp()
-         * @param mixed $image
-         * @param mixed $status
-         * @param mixed $headers
-         * @static 
-         */ 
-        public static function image($image = null, $status = 200, $headers = [])
-        {
-                        return \Illuminate\Routing\ResponseFactory::image($image, $status, $headers);
-        }
          
     }
             /**
@@ -12230,18 +12217,6 @@
         {
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
-        }
-                    /**
-         * 
-         *
-         * @see \Folklore\Image\ServiceProvider::bootRouter()
-         * @param mixed $path
-         * @param mixed $config
-         * @static 
-         */ 
-        public static function image($path, $config)
-        {
-                        return \Illuminate\Routing\Router::image($path, $config);
         }
          
     }
@@ -17561,6 +17536,70 @@
      
 }
 
+    namespace Intervention\Image\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Image {
+                    /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = [])
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->configure($config);
+        }
+                    /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->make($data);
+        }
+                    /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->canvas($width, $height, $background);
+        }
+                    /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+     
+}
+
     namespace Facade\Ignition\Facades { 
             /**
      * Class Flare.
@@ -17847,330 +17886,6 @@
         {
                         /** @var \Facade\FlareClient\Flare $instance */
                         return $instance->group($groupName, $properties);
-        }
-         
-    }
-     
-}
-
-    namespace Folklore\Image { 
-            /**
-     * 
-     *
-     */ 
-        class Facade {
-                    /**
-         * Return an URL to process the image
-         * 
-         * Examples:
-         * 
-         * ```php
-         * echo Image::url('path/to/image.jpg', 300, 300);
-         * // '/path/to/image-filters(300x300).jpg'
-         * ```
-         * 
-         * You can also omit the size parameters and pass a filters array as the second argument
-         * ```php
-         * echo Image::url('path/to/image.jpg', [
-         *     'width' => 300,
-         *     'height' => 300,
-         *     'rotate' => 180
-         * ]);
-         * // '/path/to/image-filters(300x300-rotate(180)).jpg'
-         * ```
-         * 
-         * There is also an `image_url()` helper available
-         * ```php
-         * echo image_url('path/to/image.jpg', 300, 300);
-         * ```
-         * 
-         * You can change the format of the url by changing the configuration in the
-         * `config/image.php` file or by passing the same options in the filters
-         * array. (see [Url Generator](url-generator.md) for available options)
-         *
-         * @param string $src
-         * @param int|array|string $width The maximum width of the image. If an
-         * array or a string is passed, it is considered as the filters argument.
-         * @param int $height The maximum height of the image
-         * @param array|string $filters An array of filters
-         * @return string The generated url containing the filters.
-         * @static 
-         */ 
-        public static function url($src, $width = null, $height = null, $filters = [])
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->url($src, $width, $height, $filters);
-        }
-                    /**
-         * Return a pattern to match url
-         *
-         * @param array $config Pattern configuration
-         * @return string $pattern   A regex matching the images url
-         * @static 
-         */ 
-        public static function pattern($config = [])
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->pattern($config);
-        }
-                    /**
-         * Return an URL to process the image
-         *
-         * @param string $path
-         * @return array 
-         * @static 
-         */ 
-        public static function parse($path, $config = [])
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->parse($path, $config);
-        }
-                    /**
-         * Get an ImageHandler for a specific source
-         *
-         * @param string|null $name The name of the source
-         * @return \Folklore\Image\Folklore\Image\Contracts\ImageHandlerContract The image manipulator object, bound
-         * the to specified source
-         * @static 
-         */ 
-        public static function source($name = null)
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->source($name);
-        }
-                    /**
-         * Register a custom source creator Closure.
-         *
-         * @param string $driver
-         * @param \Closure $callback
-         * @return \Folklore\Image\Image 
-         * @static 
-         */ 
-        public static function extend($driver, $callback)
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->extend($driver, $callback);
-        }
-                    /**
-         * Map image routes on the Laravel Router
-         * 
-         * Add the routes from the file specified in the `config/image.php`
-         * file at `routes.map`. You can pass a config array to override values
-         * from the config or you can also pass a path to a routes file. This method
-         * is automatically called if you have a path in your `config/image.php`.
-         * To disable this you can set `routes.map` to null.
-         * 
-         * Examples:
-         * 
-         * Map the routes on the Laravel Router
-         * ```php
-         * Image::routes();
-         * 
-         * // or with the helper
-         * image()->routes();
-         * ```
-         * 
-         * Map a custom routes file
-         * ```php
-         * Image::routes(base_path('routes/my-custom-file.php'));
-         * 
-         * // or an equivalent
-         * Image::routes([
-         *     'map' => base_path('routes/my-custom-file.php')
-         * ]);
-         * ```
-         *
-         * @param array|string $config A config array that will override values
-         * from the `config/image.php`. If you pass a string, it is considered as
-         * a path to a filtes containing routes.
-         * @return array 
-         * @static 
-         */ 
-        public static function routes($config = [])
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->routes($config);
-        }
-                    /**
-         * Register a new filter to the manager that can be used by the `Image::url()` and `Image::make()` method.
-         * 
-         * Examples:
-         * 
-         * From an array
-         * ```php
-         * // Declare the filter in a Service Provider
-         * Image::filter('small', [
-         *     'width' => 100,
-         *     'height' => 100,
-         *     'crop' => true,
-         * ]);
-         * 
-         * // Use it when making an image
-         * $image = Image::make('path/to/image.jpg', [
-         *     'small' => true,
-         * ]);
-         * 
-         * // or
-         * 
-         * $image = Image::make('path/to/image.jpg', 'small');
-         * ```
-         * 
-         * With a closure
-         * ```php
-         * // Declare the filter in a Service Provider
-         * Image::filter('circle', function ($image, $color)
-         * {
-         *     // See Imagine documentation for the Image object
-         *     // (https://imagine.readthedocs.io/en/latest/index.html)
-         *     $color = $image->palette()->color($color);
-         *     $image->draw()
-         *          ->ellipse(new Point(0, 0), new Box(300, 225), $color);
-         *     return $image;
-         * });
-         * 
-         * // Use it when making an image
-         * $image = Image::make('path/to/image.jpg', [
-         *     'circle' => '#FFCC00',
-         * ]);
-         * ```
-         * 
-         * With a class path
-         * ```php
-         * // Declare the filter in a Service Provider
-         * Image::filter('custom', \App\Filters\CustomFilter::class);
-         * 
-         * // Use it when making an image
-         * $image = Image::make('path/to/image.jpg', [
-         *     'custom' => true,
-         * ]);
-         * ```
-         *
-         * @param string $name The name of the filter
-         * @param \Closure|array|string|object $filter The filter can be an array of
-         * filters, a closure that will get the Image object or a class path to a
-         * Filter class. (more info canbe found in the
-         * [Filters](../filters.md) documentation)
-         * @return \Folklore\Image\Image 
-         * @static 
-         */ 
-        public static function filter($name, $filter)
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->filter($name, $filter);
-        }
-                    /**
-         * Set all filters
-         *
-         * @param array $filters
-         * @return \Folklore\Image\Image 
-         * @static 
-         */ 
-        public static function setFilters($filters)
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->setFilters($filters);
-        }
-                    /**
-         * Get all filters
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getFilters()
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->getFilters();
-        }
-                    /**
-         * Get a filter
-         *
-         * @param string $name
-         * @return array|\Closure|string|object 
-         * @static 
-         */ 
-        public static function getFilter($name)
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->getFilter($name);
-        }
-                    /**
-         * Check if a filter exists
-         *
-         * @param string $name
-         * @return boolean 
-         * @static 
-         */ 
-        public static function hasFilter($name)
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->hasFilter($name);
-        }
-                    /**
-         * Set route config
-         *
-         * @param array $routeConfig
-         * @return \Folklore\Image\Image 
-         * @static 
-         */ 
-        public static function setRouteConfig($routeConfig)
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->setRouteConfig($routeConfig);
-        }
-                    /**
-         * Get the source manager
-         *
-         * @return \Folklore\Image\SourceManager 
-         * @static 
-         */ 
-        public static function getSourceManager()
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->getSourceManager();
-        }
-                    /**
-         * Get the source manager
-         *
-         * @return \Folklore\Image\Contracts\FiltersManager 
-         * @static 
-         */ 
-        public static function getFiltersManager()
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->getFiltersManager();
-        }
-                    /**
-         * Get the url generator
-         *
-         * @return \Folklore\Image\Contracts\UrlGenerator 
-         * @static 
-         */ 
-        public static function getUrlGenerator()
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->getUrlGenerator();
-        }
-                    /**
-         * Get the imagine manager
-         *
-         * @return \Folklore\Image\getImagineManager 
-         * @static 
-         */ 
-        public static function getImagineManager()
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->getImagineManager();
-        }
-                    /**
-         * Get the imagine instance from the manager
-         *
-         * @return \Imagine\Image\ImagineInterface 
-         * @static 
-         */ 
-        public static function getImagine()
-        {
-                        /** @var \Folklore\Image\Image $instance */
-                        return $instance->getImagine();
         }
          
     }
@@ -19159,50 +18874,6 @@
         public static function assertDontSeeLivewire($component)
         {
                         return \Illuminate\Testing\TestView::assertDontSeeLivewire($component);
-        }
-         
-    }
-     
-}
-
-    namespace Illuminate\Routing { 
-            /**
-     * 
-     *
-     * @mixin \Illuminate\Routing\RouteRegistrar
-     */ 
-        class Router {
-                    /**
-         * 
-         *
-         * @see \Folklore\Image\ServiceProvider::bootRouter()
-         * @param mixed $path
-         * @param mixed $config
-         * @static 
-         */ 
-        public static function image($path, $config)
-        {
-                        return \Illuminate\Routing\Router::image($path, $config);
-        }
-         
-    }
-            /**
-     * 
-     *
-     */ 
-        class ResponseFactory {
-                    /**
-         * 
-         *
-         * @see \Folklore\Image\ServiceProvider::bootHttp()
-         * @param mixed $image
-         * @param mixed $status
-         * @param mixed $headers
-         * @static 
-         */ 
-        public static function image($image = null, $status = 200, $headers = [])
-        {
-                        return \Illuminate\Routing\ResponseFactory::image($image, $status, $headers);
         }
          
     }
@@ -22709,8 +22380,8 @@ namespace  {
             class Table extends \Bootstrapper\Facades\Table {}
             class MediaObject extends \Bootstrapper\Facades\MediaObject {}
             class FormBuilder extends \Kris\LaravelFormBuilder\Facades\FormBuilder {}
+            class Image extends \Intervention\Image\Facades\Image {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
-            class Image extends \Folklore\Image\Facade {}
             class Agent extends \Jenssegers\Agent\Facades\Agent {}
             class Html extends \Collective\Html\HtmlFacade {}
             class Livewire extends \Livewire\Livewire {}

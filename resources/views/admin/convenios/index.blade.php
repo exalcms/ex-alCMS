@@ -38,11 +38,11 @@
                                             }
                                         }
                                         return MediaObject::withContents([
-                                            'image' => asset('storage/'.$foto),
+                                            'image' => asset('uploads/'.$foto),
                                             'link' => '#',
                                             'heading' => $convenio->empresa,
                                             'body' => $convenio->beneficios,
-                                            ])->addClass(['mo-convenios']);
+                                            ])->addClass(['mo-galeria']);
                                     })
                                     ->callback('Actions', function ($field, $convenio){
                                         $linkEdit = route('admin.convenios.edit', ['convenio' => $convenio->id]);

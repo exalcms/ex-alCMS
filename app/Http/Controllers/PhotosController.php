@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Forms\RelPhotoExPresForm;
 use App\Models\Photo;
-use Folklore\Image\Image;
 use Illuminate\Http\Request;
 use Imagine\Image\Box;
+use Intervention\Image\Facades\Image;
+use Symfony\Component\Console\Input\Input;
 
 class PhotosController extends Controller
 {
@@ -17,7 +17,7 @@ class PhotosController extends Controller
      */
     public function index()
     {
-        $photos = Photo::paginate(8);
+        $photos = Photo::orderBy('using', 'ASC')->paginate(8);
         return view('admin.photos.index', compact('photos'));
     }
 
@@ -29,19 +29,44 @@ class PhotosController extends Controller
     public function photoUpload(Request $request)
     {
         //dd($request);
+
         $request->validate([
             'photoFile' => 'required',
-            'photoFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+            'photoFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf'
         ]);
+        //|max:2048
         if($request->hasfile('photoFile')){
             foreach ($request->file('photoFile') as $file)
             {
+
+                if ($file->getSize() > 2048){
+                    $width = 800;
+                    $heigth = 600;
+
+                    list($width_oring, $heigth_orig) = getimagesize($file);
+                    $ratio_orig = $width_oring/$heigth_orig;
+
+                    if($width/$heigth > $ratio_orig){
+                        $width = $heigth*$ratio_orig;
+                    }else{
+                        $heigth = $width/$ratio_orig;
+                    }
+
+                    $img = Image::make($file);
+                    $img->resize($width, $heigth);
+                    if ($request['using'] == 'Galeria'){
+                        $img->insert(public_path().'/site/img/marca_15.png', 'bottom-right', 10, 10);
+                    }
+                    $img->save($file);
+                }
+
                 $name = md5("-{$file->getClientOriginalName()}")."_".time().".{$file->guessExtension()}";
-                $file->move(public_path().'/uploads', $name);
+                $pasta = \App\Utils\DefaultFunctions::tirarAcentos($request['title']);
+                $file->move(public_path() . '/uploads/'.$pasta, $name);
 
                 $photoModel = new Photo();
                 $photoModel->name = $name;
-                $photoModel->photo_path = '/uploads/'.$name;
+                $photoModel->photo_path = '/uploads/'.$pasta.'/'.$name;
                 $photoModel->origin_name = $file->getClientOriginalName();
                 $photoModel->using = $request['using'];
                 $photoModel->title = $request['title'];
@@ -49,14 +74,13 @@ class PhotosController extends Controller
 
                 $photoModel->save();
 
-                $thumbSmall = \Image::open($photoModel->photo_path)->thumbnail(new Box(60, 60));
-                \Storage::disk('public')->put($name, $thumbSmall);
             }
 
             return back()->with('msg', 'Fotos salvas com sucesso');
         }else{
             return back()->with('msg', 'Nenhum arquivo foi selecionado');
         }
+
     }
 
     /**
@@ -134,8 +158,8 @@ class PhotosController extends Controller
             \Storage::disk('public')->delete($photo->name);
         }
 
-        if(\File::exists(public_path().'/uploads/'.$photo->name)){
-            \File::delete(public_path().'/uploads/'.$photo->name);
+        if(\File::exists(public_path().$photo->photo_path)){
+            \File::delete(public_path().$photo->photo_path);
         }
 
         $photo->delete();

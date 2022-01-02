@@ -992,14 +992,14 @@ fim do history
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
 }
 
-#nossaloja #nossaloja-filters {
+#nossaloja #nossaloja-flters {
     padding: 0;
     margin: 5px 0 35px 0;
     list-style: none;
     text-align: center;
 }
 
-#nossaloja #nossaloja-filters li {
+#nossaloja #nossaloja-flters li {
     cursor: pointer;
     margin: 15px 15px 15px 0;
     display: inline-block;
@@ -1014,34 +1014,34 @@ fim do history
     transition: all 0.3s ease-in-out;
 }
 
-#nossaloja #nossaloja-filters li:hover, #nossaloja #nossaloja-filters li.filter-active {
+#nossaloja #nossaloja-flters li:hover, #nossaloja #nossaloja-flters li.filter-active {
     background: #007bff;
     color: #fff;
 }
 
-#nossaloja #nossaloja-filters li:last-child {
+#nossaloja #nossaloja-flters li:last-child {
     margin-right: 0;
 }
 
-#nossaloja .portfolio-item {
+#nossaloja .nossaloja-item {
     position: relative;
     overflow: hidden;
     margin-bottom: 30px;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap {
+#nossaloja .nossaloja-item .nossaloja-wrap {
     overflow: hidden;
     position: relative;
     border-radius: 6px;
     margin: 0;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap:hover img {
+#nossaloja .nossaloja-item .nossaloja-wrap:hover img {
     opacity: 0.4;
     transition: 0.3s;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info {
     position: absolute;
     top: 0;
     right: 0;
@@ -1056,7 +1056,7 @@ fim do history
     transition: 0.2s linear;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info h4 {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info h4 {
     font-size: 22px;
     line-height: 1px;
     font-weight: 700;
@@ -1064,15 +1064,15 @@ fim do history
     padding-bottom: 0;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info h4 a {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info h4 a {
     color: #fff;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info h4 a:hover {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info h4 a:hover {
     color: #007bff;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info p {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info p {
     padding: 0;
     margin: 0;
     color: #e2effe;
@@ -1081,7 +1081,7 @@ fim do history
     text-transform: uppercase;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info .link-preview, #nossaloja .portfolio-item .portfolio-wrap .portfolio-info .link-details {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info .link-preview, #nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info .link-details {
     display: inline-block;
     line-height: 1;
     text-align: center;
@@ -1092,50 +1092,50 @@ fim do history
     margin: 10px 4px 0 4px;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info .link-preview i, #nossaloja .portfolio-item .portfolio-wrap .portfolio-info .link-details i {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info .link-preview i, #nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info .link-details i {
     padding-top: 6px;
     font-size: 22px;
     color: #fff;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info .link-preview:hover, #nossaloja .portfolio-item .portfolio-wrap .portfolio-info .link-details:hover {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info .link-preview:hover, #nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info .link-details:hover {
     background: #3395ff;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap .portfolio-info .link-preview:hover i, #nossaloja .portfolio-item .portfolio-wrap .portfolio-info .link-details:hover i {
+#nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info .link-preview:hover i, #nossaloja .nossaloja-item .nossaloja-wrap .nossaloja-info .link-details:hover i {
     color: #fff;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap:hover {
+#nossaloja .nossaloja-item .nossaloja-wrap:hover {
     background: #003166;
 }
 
-#nossaloja .portfolio-item .portfolio-wrap:hover .portfolio-info {
+#nossaloja .nossaloja-item .nossaloja-wrap:hover .nossaloja-info {
     opacity: 1;
 }
 
 /*--------------------------------------------------------------
 # nossaloja Details
 --------------------------------------------------------------*/
-#nossaloja .portfolio-details {
+#nossaloja .nossaloja-details {
     padding-top: 30px;
 }
 
-#nossaloja .portfolio-details .portfolio-details-container {
+#nossaloja .nossaloja-details .nossaloja-details-container {
     position: relative;
 }
 
-#nossaloja .portfolio-details .portfolio-details-carousel {
+#nossaloja .nossaloja-details .nossaloja-details-carousel {
     position: relative;
     z-index: 1;
 }
 
-#nossaloja .portfolio-details .portfolio-details-carousel .owl-nav, .portfolio-details .portfolio-details-carousel .owl-dots {
+#nossaloja nossaloja-details .nossaloja-details-carousel .owl-nav, .nossaloja-details .nossaloja-details-carousel .owl-dots {
     margin-top: 5px;
     text-align: left;
 }
 
-#nossaloja .portfolio-details .portfolio-details-carousel .owl-dot {
+#nossaloja .nossaloja-details .nossaloja-details-carousel .owl-dot {
     display: inline-block;
     margin: 0 10px 0 0;
     width: 12px;
@@ -1144,11 +1144,11 @@ fim do history
     background-color: #ddd !important;
 }
 
-#nossaloja .portfolio-details .portfolio-details-carousel .owl-dot.active {
+#nossaloja .nossaloja-details .nossaloja-details-carousel .owl-dot.active {
     background-color: #007bff !important;
 }
 
-#nossaloja .portfolio-details .portfolio-info {
+#nossaloja .nossaloja-details .nossaloja-info {
     padding: 30px;
     position: absolute;
     right: 0;
@@ -1158,7 +1158,7 @@ fim do history
     z-index: 2;
 }
 
-#nossaloja .portfolio-details .portfolio-info h3 {
+#nossaloja .nossaloja-details .nossaloja-info h3 {
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -1166,36 +1166,36 @@ fim do history
     border-bottom: 1px solid #eee;
 }
 
-#nossaloja .portfolio-details .portfolio-info ul {
+#nossaloja .nossaloja-details .nossaloja-info ul {
     list-style: none;
     padding: 0;
     font-size: 15px;
 }
 
-#nossaloja .portfolio-details .portfolio-info ul li + li {
+#nossaloja .nossaloja-details .nossaloja-info ul li + li {
     margin-top: 10px;
 }
 
-#nossaloja .portfolio-details .portfolio-description {
+#nossaloja .nossaloja-details .nossaloja-description {
     padding-top: 50px;
 }
 
-#nossaloja .portfolio-details .portfolio-description h2 {
+#nossaloja .nossaloja-details .nossaloja-description h2 {
     width: 50%;
     font-size: 26px;
     font-weight: 700;
     margin-bottom: 20px;
 }
 
-#nossaloja .portfolio-details .portfolio-description p {
+#nossaloja .nossaloja-details .nossaloja-description p {
     padding: 0 0 0 0;
 }
 
 @media (max-width: 768px) {
-    #nossaloja .portfolio-details .portfolio-description h2 {
+    #nossaloja .nossaloja-details .nossaloja-description h2 {
         width: 100%;
     }
-    #nossaloja .portfolio-details .portfolio-info {
+    #nossaloja .nossaloja-details .nossaloja-info {
         position: static;
         margin-top: 30px;
     }
@@ -1208,14 +1208,14 @@ fim do history
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
 }
 
-#portfolio #portfolio-filters {
+#portfolio #portfolio-flters {
   padding: 0;
   margin: 5px 0 35px 0;
   list-style: none;
   text-align: center;
 }
 
-#portfolio #portfolio-filters li {
+#portfolio #portfolio-flters li {
   cursor: pointer;
   margin: 15px 15px 15px 0;
   display: inline-block;
@@ -1230,12 +1230,17 @@ fim do history
   transition: all 0.3s ease-in-out;
 }
 
-#portfolio #portfolio-filters li:hover, #portfolio #portfolio-filters li.filter-active {
+#portfolio #portfolio-flters li:hover, #portfolio #portfolio-flters li.filter-active {
   background: #007bff;
   color: #fff;
 }
 
-#portfolio #portfolio-filters li:last-child {
+#portfolio #portfolio-flters li:hover a{
+    background: #007bff;
+    color: #fff;
+}
+
+#portfolio #portfolio-flters li:last-child {
   margin-right: 0;
 }
 
@@ -2222,3 +2227,95 @@ fim do history
     border-bottom: #00458f solid 2px;
 }
 
+/*-------------------------------------------------
+#Galery
+------------------------------------------------- */
+.tz-gallery {
+    padding: 40px;
+}
+
+.tz-gallery .lightbox img {
+    width: auto;
+    max-width: 100%;
+    height: 230px;
+    margin-bottom: 30px;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+
+.tz-gallery .lightbox img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.tz-gallery img {
+    border-radius: 4px;
+}
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
+.tz-gallery .caption{
+    margin-top: -22px;
+    padding: 5px 5px;
+    text-align: center;
+}
+
+.tz-gallery .caption h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.tz-gallery .caption p {
+    font-size: 15px;
+    color: #7b7d7d;
+    font-family:courier,arial,helvetica;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.btn-adm{
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.credits{
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .tz-gallery .lightbox img {
+        width: auto;
+        max-width: 100%;
+        height: 150px;
+        margin-bottom: 30px;
+        transition: 0.2s ease-in-out;
+        box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+    }
+    .tz-gallery .caption{
+        margin-top: -22px;
+        padding: 5px 5px;
+        height: 40px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .tz-gallery .lightbox img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 30px;
+        transition: 0.2s ease-in-out;
+        box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+    }
+}
+
+.mo-galeria img{
+    height: 80px!important;
+}

@@ -22,17 +22,17 @@
 
                                         if(!$compo->foto){
                                             $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
-                                            $foto = $img->name;
+                                            $foto = $img->photo_path;
                                         }else{
                                             $img = \App\Models\Photo::where('id', '=', $compo->photo_id)->first();
-                                            $foto = $img->name;
+                                            $foto = $img->photo_path;
                                         }
                                         return MediaObject::withContents([
-                                            'image' => asset('storage/'.$foto),
+                                            'image' => asset($foto),
                                             'link' => '#',
                                             'heading' => $compo->user->name_full,
                                             'body' => $compo->diretoria->cargo,
-                                            ]);
+                                            ])->addClass(['mo-galeria']);
                                     })
                                     ->callback('Actions', function ($field, $compo){
                                         $linkEdit = route('admin.compos.edit', ['compo' => $compo->id]);

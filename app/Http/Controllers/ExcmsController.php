@@ -9,9 +9,12 @@ use App\Models\Diretoria;
 use App\Models\DiretoriaUser;
 use App\Models\ElementSite;
 use App\Models\ExPresidente;
+use App\Models\Galery;
 use App\Models\MensPresid;
+use App\Models\Photo;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ExcmsController extends Controller
@@ -36,13 +39,38 @@ class ExcmsController extends Controller
         $convenios = Convenio::with('photos')->where('ativo', '=', 's')->orderBy('data_valid', 'ASC')->get();
         $exCMS = Association::orderBy('id', 'DESC')->first();
         $assoc = ElementSite::orderBy('id', 'DESC')->first();
+        $galeriasTurmas = Galery::with('photos')->where([
+            ['tipo', '=', 'Turmas'],
+            ['publicada', '=', 's'],
+        ])->inRandomOrder()->limit(3)->get();
+        $galeriasEvents = Galery::with('photos')->where([
+            ['tipo', '=', 'Eventos'],
+            ['publicada', '=', 's'],
+        ])->inRandomOrder()->limit(3)->get();
+        $galeriasFotos = Galery::with('photos')->where([
+            ['tipo', '=', 'Fotos'],
+            ['publicada', '=', 's'],
+        ])->inRandomOrder()->limit(3)->get();
+        $galeries2 = $galeriasTurmas->merge($galeriasEvents)->sortByDesc('data');
+        $galeries = $galeries2->merge($galeriasFotos)->sortByDesc('data');
         return view('welcome', compact('assoc', 'dirFin', 'dirPres', 'dirSec', 'dirVic', 'dirJur',
-            'dirCom', 'dirCul', 'dirEsp', 'menspre', 'expresids', 'exCMS', 'convenios'));
+            'dirCom', 'dirCul', 'dirEsp', 'menspre', 'expresids', 'exCMS', 'convenios', 'galeries'));
     }
 
     public function detail()
     {
         return view('detail');
+    }
+
+    public function galeries()
+    {
+        $galeries = Galery::with('photos')->where('publicada', '=', 's')->paginate(20);
+        return view('galeries', compact('galeries'));
+    }
+
+    public function galery(Galery $galery)
+    {
+        return view('galery', compact('galery'));
     }
 
     public function detailConv(Convenio $convenio)

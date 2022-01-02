@@ -58,8 +58,6 @@
     <div class="container">
 
         <div class="logo float-left">
-            <!-- Uncomment below if you prefer to use an text logo -->
-            <!-- <h1><a href="index.html">NewBiz</a></h1> -->
             <a href="{{route('/')}}"><img src="{{asset('site/img/logo.png')}}" alt="" class="img-fluid"></a>
         </div>
 
@@ -134,7 +132,7 @@
                                 <ul>
                                     <li><a href="{{route('admin.mensagems.index')}}">Mensagens</a></li>
                                     <li><a href="{{route('admin.convenios.index')}}">Convênios</a></li>
-                                    <li><a href="#">Galerias</a></li>
+                                    <li><a href="{{route('admin.galeries.index')}}">Galerias</a></li>
                                     <li><a href="#">Avisos/Notícias</a></li>
                                     <li><a href="#">Nossa loja</a></li>
                                     <li><a href="#">Turmas CMS</a></li>
@@ -145,7 +143,7 @@
                         @if(Auth::user()->role == 1 || Auth::user()->role == 2)
                             <li class="drop-down"><a href="#">Serviços</a>
                                 <ul>
-                                    <li><a href="#">Upload de fotos</a></li>
+                                    <li><a href="{{route('logado.detail')}}">Criar Galerias</a></li>
                                     <li><a href="#">Envio de mensagens</a></li>
                                     <li><a href="#">Networks</a></li>
                                     <li><a href="{{route('mensagems.create')}}">Contato</a></li>

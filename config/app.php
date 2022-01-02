@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Bahia',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +168,8 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
-        Folklore\Image\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -240,7 +241,7 @@ return [
         'Table' => Bootstrapper\Facades\Table::class,
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
-        'Image' => Folklore\Image\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

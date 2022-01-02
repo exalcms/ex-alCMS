@@ -18,6 +18,8 @@ use App\Repositories\ElementSiteRepository;
 use App\Repositories\ElementSiteRepositoryEloquent;
 use App\Repositories\ExPresidenteRepository;
 use App\Repositories\ExPresidenteRepositoryEloquent;
+use App\Repositories\GaleryRepository;
+use App\Repositories\GaleryRepositoryEloquent;
 use App\Repositories\ImageRepository;
 use App\Repositories\ImageRepositoryEloquent;
 use App\Repositories\MensagemRepository;
@@ -51,6 +53,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ExPresidenteRepository::class, ExPresidenteRepositoryEloquent::class);
         $this->app->bind(MensagemRepository::class, MensagemRepositoryEloquent::class);
         $this->app->bind(ConvenioRepository::class, ConvenioRepositoryEloquent::class);
+        $this->app->bind(GaleryRepository::class, GaleryRepositoryEloquent::class);
         //:end-bindings:
     }
 

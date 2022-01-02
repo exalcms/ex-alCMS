@@ -20,11 +20,11 @@
                                     Table::withContents($photos->items())->striped()
                                     ->callback('Detalhes', function($field, $photo){
                                         return MediaObject::withContents([
-                                            'image' => asset('storage/'.$photo->name),
+                                            'image' => asset($photo->photo_path),
                                             'link' => asset($photo->photo_path),
-                                            'heading' => $photo->using,
+                                            'heading' => $photo->using.' - '.$photo->title,
                                             'body' => 'Nome do arquivo - '.$photo->origin_name,
-                                            ]);
+                                            ])->addClass(['mo-galeria']);
                                     })
                                     ->callback('Actions', function ($field, $photo){
                                         $linkDel = route('admin.photos.show', ['photo' => $photo->id]);

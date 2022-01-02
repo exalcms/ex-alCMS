@@ -41,8 +41,6 @@
                         <option value="Diretoria">Diretoria</option>
                         <option value="Convenio">Convênio</option>
                         <option value="Galeria">Galeria</option>
-                        <option value="Turmas">Turmas</option>
-                        <option value="Eventos">Eventos</option>
                     </select>
                 </div>
             </div>
@@ -53,8 +51,8 @@
             </div>
 
             <div class="custom-file mt-2">
-                <x-jet-label for="legenda" value="{{ __('Legenda') }}" />
-                <x-jet-input id="legenda" class="block mt-1 w-full" type="text" name="legenda" :value="old('legenda')" />
+                
+                <x-jet-input id="legenda" class="block mt-1 w-full" type="hidden" name="legenda" :value="old('legenda')" />
             </div>
 
             <button type="submit" name="submit" class="btn btn-primary btn-block mt-4">
