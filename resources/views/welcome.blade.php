@@ -19,11 +19,12 @@
         @if(count($convenios) > 0)
         @include('sections.section-serv')
         @endif
-        @include('sections.section-news')
+        {{--
+        @include('sections.section-news') --}}
         @if(count($galeries) > 0)
         @include('sections.section-galery')
         @endif
-        @include('sections.section-parce')
+        {{--@include('sections.section-parce')--}}
 
     </main><!-- End #main -->
 

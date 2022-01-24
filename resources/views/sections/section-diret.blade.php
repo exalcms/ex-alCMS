@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-
+<!--
             <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="300">
                 <div class="member">
                     <img src="{{asset($dirEsp->photo->photo_path)}}" class="img-fluid" alt="">
@@ -132,7 +132,7 @@
                     </div>
                 </div>
             </div>
-
+-->
             <div class="col-lg-3 col-md-6" data-aos="zoom-out" data-aos-delay="100">
                 <div class="member">
                     <img src="{{asset($dirJur->photo->photo_path)}}" class="img-fluid" alt="">

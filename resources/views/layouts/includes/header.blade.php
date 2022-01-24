@@ -71,6 +71,7 @@
                         <li><a href="{{route('/')}}#portfolio">Galeria</a></li>
                         <li><a href="{{route('/')}}#services">Serviços</a></li>
                         <li><a href="{{route('/')}}#clients">Parceiros</a></li>
+                        <li><a href="{{route('/')}}#nossaloja">Loja</a></li>
                     </ul>
                 </li>
                 <li class="drop-down"><a href="#">Associação</a>
@@ -111,7 +112,7 @@
         @else
                 <nav class="main-nav float-right d-none d-lg-block">
                     <ul>
-                        <li class="active"><a href="{{route('dashboard')}}">Loja</a></li>
+                        <li class="active"><a href="{{route('/')}}#nossaloja">Loja</a></li>
                         @if(Auth::user()->role == 1)
                             <li class="drop-down"><a href="{{ route('admin.dashboard-admin') }}">Admin-Cont.</a>
                                 <ul>

@@ -17,10 +17,16 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Links Úteis</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Quem Somos</a></li>
-                        <li><a href="#">Serviços</a></li>
-                        <li><a href="#">Cadastro</a></li>
+                        <li><a href="{{route('/')}}">Home</a></li>
+                        <li><a href="{{route('/')}}#about">Quem Somos</a></li>
+                        <li><a href="{{route('/')}}#services">Serviços</a></li>
+                        @if(Auth::guest())
+                            <li><a href="{{ route('register')}}">Cadastro</a></li>
+                        @elseif(Auth::user()->cad_atualizado == 'n')
+                            <li><a href="{{route('profile.show-cms')}}">Perfil</a></li>
+                        @else
+                            <li><a href="{{route('profile.show')}}">Perfil</a></li>
+                        @endif
                         <li><a href="#">Termos de uso</a></li>
                         <li><a href="#">Política de Privacidade</a></li>
                     </ul>
@@ -29,25 +35,30 @@
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h4>Contato</h4>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br>
-                        <strong>Telefone:</strong> +1 5589 55488 55<br>
-                        <strong>Whatsapp:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        Rua Território do Amapá, 455 <br>
+                        Salvador, BA 41.830-540<br>
+                        Brasil <br>
+                        <strong>Telefone:</strong> +55 (71) 999 578 916<br>
+                        <strong>Whatsapp:</strong> +55 (71) 999 578 916<br>
+                        <strong>Email:</strong> assoc.exalcms@gmail.com<br>
                     </p>
 
                     <div class="social-links">
-                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        <!--<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>-->
                         <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
                         <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                        <!--
                         <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>-->
                     </div>
 
                 </div>
-
                 <div class="col-lg-3 col-md-6 footer-newsletter">
+                    <img src="{{asset('site/img/marca_assoc_b.png')}}" alt="" width="100%" class="img-fluid">
+                </div>
+
+               <!-- NEWSLETTER
+               <div class="col-lg-3 col-md-6 footer-newsletter">
                     <h4>Assine nossa Newsletter</h4>
                     <p>Mantenha-se informado e atualizado com todos os eventos e ações da Associação dos Ex-alunos do
                     CMS. Inscreva-se para receber a nossa Newsletter em seu email. Eventos, confraternizações, promoções,
@@ -55,7 +66,7 @@
                     <form action="" method="post">
                         <input type="email" name="email"><input type="submit" value="Inscreva-se">
                     </form>
-                </div>
+                </div>-->
 
             </div>
         </div>
