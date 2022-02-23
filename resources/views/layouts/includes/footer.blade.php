@@ -86,6 +86,7 @@
 
 <!-- Vendor JS Files -->
 <script src="{{asset('site/vendor/jquery/jquery.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="{{asset('site/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('site/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
 <script src="{{asset('site/vendor/php-email-form/validate.js')}}"></script>
@@ -96,6 +97,7 @@
 <script src="{{asset('site/vendor/venobox/venobox.min.js')}}"></script>
 <script src="{{asset('site/vendor/aos/aos.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js" integrity="sha512-Rdk63VC+1UYzGSgd3u2iadi0joUrcwX0IWp2rTh6KXFoAmgOjRS99Vynz1lJPT8dLjvo6JZOqpAHJyfCEZ5KoA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Template Main JS File -->
 <script src="{{asset('site/js/main.js')}}"></script>
@@ -132,6 +134,16 @@
     $("#tel_com").mask('(00) 0000-00009');
     $("#cep").mask('00.000-000');
 </script>
+<script>
+    $(document).ready(function()
+    {
+        $("#price").maskMoney({
+            prefix: "R$ ",
+            decimal: ",",
+            thousands: "."
+        });
+    });
+</script>
 <script type="text/javascript">
     function handleInput(e) {
         var ss = e.target.selectionStart;
@@ -140,6 +152,11 @@
         e.target.selectionStart = ss;
         e.target.selectionEnd = se;
     }
+</script>
+<script type="text/javascript">
+$(function () {
+$('[data-toggle="tooltip"]').tooltip()
+});
 </script>
 @livewireScripts
 </body>

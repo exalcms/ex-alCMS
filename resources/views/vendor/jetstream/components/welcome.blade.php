@@ -4,9 +4,8 @@
     </div>
 
     <div class="mt-8 text-2xl">
-        Bem vindo a área exclusiva do associado
+        Bem vindo a área exclusiva do cadastrado
     </div>
-
     <div class="mt-6 text-gray-500">
         Esta é uma área exclusiva para associados. Aqui você encontrará as principais funcionalidades
         de interação com o nosso portal e com outros colegas. Algumas funcionalidades ainda estão em

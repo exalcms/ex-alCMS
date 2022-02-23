@@ -1114,6 +1114,81 @@ fim do history
     opacity: 1;
 }
 
+.card-loja{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 470px;
+    grid-gap: 15px 8px;
+    padding: 20px 10px;
+}
+
+.number-tc{
+    border: solid #0a58f6 1pt;
+    width: 55px;
+    margin-left: 15px;
+    margin-bottom: 8px;
+}
+
+.order-esquec{
+    padding: 15px;
+    width: 100%;
+    background: linear-gradient(#4eb8ef, #02f4fd);
+    round-clip: 20%;
+}
+.order-esquec span{
+    font-weight: bold;
+    color: #0000cc;
+}
+
+.form-prod-bot{
+    border-bottom: #0000cc solid 1px;
+}
+.form-prod-top{
+    border-bottom: #0000cc solid 1px;
+    margin-top: 5px;
+}
+
+.vlr-tot{
+    background-color: #8fd19e;
+    margin: 10px 30px 10px 50px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.marg-dir-60{
+    margin-right: 60px!important;
+}
+
+.alinha-cent{
+    text-align: center!important;
+}
+
+.cupom-show{
+    margin-left: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+@media (max-width: 767px) {
+    .order-esquec{
+        padding: 15px;
+        width: 80%;
+        background-color: #cff;
+        round-clip: 20%;
+    }
+    .order-esquec span{
+        font-weight: bold;
+        color: #0000cc;
+    }
+}
+
+.mrg-esqd{
+    margin-left: 25px;
+    margin-right: 20px;
+    text-decoration-line: underline;
+}
+
 /*--------------------------------------------------------------
 # nossaloja Details
 --------------------------------------------------------------*/
@@ -1421,6 +1496,34 @@ fim do history
     margin-top: 30px;
   }
 }
+
+/* galery mostra
+---------------------------------
+ */
+.container-galery{
+    width: 600px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.icon-cores{
+    fill: red !important;
+}
+
+@media (max-width: 768px) {
+    .container-galery{
+        width: 300px;
+        margin-top: 80px;
+        margin-bottom: 50px;
+        min-height: 200px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
 
 /* Testimonials Section
 --------------------------------*/

@@ -65,13 +65,13 @@
         <nav class="main-nav float-right d-none d-lg-block">
             <ul>
                 <li class="active"><a href="{{route('/')}}">Home</a></li>
+                <li><a href="{{route('/')}}#nossaloja">Loja</a></li>
                 <li class="drop-down"><a href="#">Conteúdo</a>
                     <ul>
                         <li><a href="{{route('/')}}#notice">Notícias</a></li>
                         <li><a href="{{route('/')}}#portfolio">Galeria</a></li>
                         <li><a href="{{route('/')}}#services">Serviços</a></li>
                         <li><a href="{{route('/')}}#clients">Parceiros</a></li>
-                        <li><a href="{{route('/')}}#nossaloja">Loja</a></li>
                     </ul>
                 </li>
                 <li class="drop-down"><a href="#">Associação</a>
@@ -112,46 +112,46 @@
         @else
                 <nav class="main-nav float-right d-none d-lg-block">
                     <ul>
-                        <li class="active"><a href="{{route('/')}}#nossaloja">Loja</a></li>
+                        <li class="active"><a href="{{route('dashboard')}}">Início</a></li>
                         @if(Auth::user()->role == 1)
-                            <li class="drop-down"><a href="{{ route('admin.dashboard-admin') }}">Admin-Cont.</a>
-                                <ul>
-                                    <li><a href="{{route('admin.users.index')}}">Usuários</a></li>
-                                    <li><a href="{{route('admin.assoc.index')}}">Associação</a></li>
-                                    <li><a href="{{route('admin.elems.index')}}">Site Conteúdo</a></li>
-                                    <li><a href="{{route('admin.photos.index')}}">Upload Fotos</a></li>
-                                    <li><a href="{{route('admin.diret.index')}}">Diretoria</a></li>
-                                    <li><a href="{{route('admin.compos.index')}}">Composição Dir.</a></li>
-                                    <li><a href="{{route('admin.expresids.index')}}">Ex-Presidentes</a></li>
-                                    <?php $dirPres = App\Models\DiretoriaUser::with('user','diretoria')->where('diretoria_id', '=', 1)->first();  ?>
-                                    @if( Auth::user()->id == 1)
-                                    <li><a href="{{route('admin.menspres.index')}}">Mensagens Presi.</a> </li>
-                                    @endif
-                                </ul>
-                            </li>
-                            <li class="drop-down"><a href="#">Admin-Func.</a>
-                                <ul>
-                                    <li><a href="{{route('admin.mensagems.index')}}">Mensagens</a></li>
-                                    <li><a href="{{route('admin.convenios.index')}}">Convênios</a></li>
-                                    <li><a href="{{route('admin.galeries.index')}}">Galerias</a></li>
-                                    <li><a href="#">Avisos/Notícias</a></li>
-                                    <li><a href="#">Nossa loja</a></li>
-                                    <li><a href="#">Turmas CMS</a></li>
-                                    <li><a href="#">Networks</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{{ route('admin.dashboard-admin') }}">Admin-Cont.</a></li>
                         @endif
                         @if(Auth::user()->role == 1 || Auth::user()->role == 2)
+                            <li class="drop-down"><a href="#">Nossa Loja</a>
+                                <ul>
+                                    <li><a href="{{route('logado.nossaloja.comprar', ['user' => Auth::user()->id])}}">Comprar</a></li>
+                                    <li><a href="#">Descontos</a></li>
+                                    <li><a href="#">Pagar</a></li>
+                                    <li><a href="{{route('logado.pedido.myorders', ['user' => Auth::user()->id])}}">Minhas Compras</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down"><a href="#">Conteúdo</a>
+                                <ul>
+                                    <li><a href="{{route('/')}}#notice">Notícias</a></li>
+                                    <li><a href="{{route('/')}}#portfolio">Galeria</a></li>
+                                    <li><a href="{{route('/')}}#services">Serviços</a></li>
+                                    <li><a href="{{route('/')}}#clients">Parceiros</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop-down"><a href="#">Associação</a>
+                                <ul>
+                                    <li><a href="{{route('/')}}#about">Quem Somos</a></li>
+                                    <li><a href="{{route('/')}}#history">Histórico</a></li>
+                                    <li><a href="{{route('/')}}#mensagempresi">Mensagem do Presidente</a></li>
+                                    <li><a href="{{route('/')}}#team">Diretoria</a></li>
+                                    <li><a href="{{route('/')}}#testimonials">Ex-presidentes</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="http://www.esfcex.eb.mil.br/" target="_blank" >CMS</a></li>
                             <li class="drop-down"><a href="#">Serviços</a>
                                 <ul>
-                                    <li><a href="{{route('logado.detail')}}">Criar Galerias</a></li>
+                                    <li><a href="#">Criar Galerias</a></li>
                                     <li><a href="#">Envio de mensagens</a></li>
                                     <li><a href="#">Networks</a></li>
                                     <li><a href="{{route('mensagems.create')}}">Contato</a></li>
                                 </ul>
                             </li>
                         @endif
-                        <li><a href="#">Check-out</a></li>
                         <li class="drop-down"><a href="#">{{ Auth::user()->name }}</a>
                             <ul>
                                 <li><a href="{{route('profile.show')}}">Perfil</a></li>

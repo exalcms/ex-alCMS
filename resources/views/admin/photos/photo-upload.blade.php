@@ -1,4 +1,4 @@
-@extends('layouts.excms')
+@extends('layouts.admin')
 
 @section('conteudo')
     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
@@ -38,9 +38,10 @@
                     </div>
                     <select class="custom-select" id="using" name="using">
                         <option selected>Escolher...</option>
-                        <option value="Diretoria">Diretoria</option>
                         <option value="Convenio">Convênio</option>
+                        <option value="Diretoria">Diretoria</option>
                         <option value="Galeria">Galeria</option>
+                        <option value="Loja">Loja</option>
                     </select>
                 </div>
             </div>
@@ -51,7 +52,7 @@
             </div>
 
             <div class="custom-file mt-2">
-                
+
                 <x-jet-input id="legenda" class="block mt-1 w-full" type="hidden" name="legenda" :value="old('legenda')" />
             </div>
 

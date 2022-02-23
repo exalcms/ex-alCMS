@@ -31,7 +31,11 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('logado', function ($user){
-            return $user->role == User::ROLE_ADMIN || $user->role == User::ROLE_EXALUNO;
+            if($user->role == User::ROLE_ADMIN || $user->role == User::ROLE_EXALUNO){
+                return true;
+            }else {
+                return route('login');
+            }
         });
     }
 }

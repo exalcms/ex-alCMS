@@ -1,4 +1,4 @@
-@extends('layouts.excms')
+@extends('layouts.admin')
 
 @section('conteudo')
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
@@ -13,15 +13,15 @@
                                     $photCount = count($galery->photos);
                                     if($photCount == 0){
                                         $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
-                                        $foto = $img->name;
+                                        $foto = $img->photo_path;
                                     }else{
                                         foreach($galery->photos as $photo){
-                                            $foto = $photo->name;
+                                            $foto = $photo->photo_path;
                                             break;
                                         }
                                     }
                                  ?>
-                                    <img src="{!! asset('uploads/'.$foto)!!}" width="60px">
+                                    <img src="{!! asset($foto)!!}" width="60px">
 
                             </div>
                             <h5>Relacionar foto com Galeria</h5>

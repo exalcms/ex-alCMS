@@ -6,32 +6,47 @@
 
         <!-- ======= Portfolio Details Section ======= -->
         <section class="portfolio-details">
-            <div class="container">
-
-                <div class="tz-gallery">
-                    <div class="row">
-                        @foreach($convenios as $convenio)
-                            @foreach($convenio->photos as $photo)
-                        <div class="col-sm-6 col-md-4">
-                            <a class="lightbox" href="{{asset('uploads/'.$photo->name)}}">
-                                <img src="{{asset('uploads/'.$photo->name)}}" alt="Park">
+            <div class="container container-galery">
+                <div class="row" >
+                    <div class="col">
+                        <div id="carrouselControls" class="carousel slide" data-ride="carousel" data-interval="4000" data-pause="hover">
+                            <div class="carousel-inner">
+                                <?php $i = 0; ?>
+                                @foreach($galeria->photos as $photo)
+                                    @if($i == 0)
+                                       <div class="carousel-item active">
+                                           <img src="{{asset($photo->photo_path)}}" alt="">
+                                           <div class="carousel-caption d-none d-md-block">
+                                               <h6>{{$galeria->titulo}}</h6>
+                                               <p>{{$photo->legenda}}</p>
+                                           </div>
+                                       </div>
+                                    @else
+                                       <div class="carousel-item">
+                                           <img src="{{asset($photo->photo_path)}}" alt="">
+                                           <div class="carousel-caption d-none d-md-block">
+                                               <h6>{{$galeria->titulo}}</h6>
+                                               <p>{{$photo->legenda}}</p>
+                                           </div>
+                                       </div>
+                                    @endif
+                                    <?php $i++; ?>
+                                @endforeach
+                            </div>
+                            <a class="carousel-control-prev" href="#carrouselControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon icon-cores" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carrouselControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Próximo</span>
                             </a>
                         </div>
-                            @endforeach
-                        @endforeach
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        {{$convenios->render()}}
                     </div>
                 </div>
             </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-            <script>
-                baguetteBox.run('.tz-gallery');
-            </script>
         </section><!-- End Portfolio Details Section -->
+
 
     </main><!-- End #main -->
 

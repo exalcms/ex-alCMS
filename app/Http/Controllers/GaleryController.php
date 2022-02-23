@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Forms\GaleryForm;
-use App\Forms\RelPhotoGaleryForm;
+use App\Forms\RelPhotoProductForm;
 use App\Models\Galery;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -96,7 +96,7 @@ class GaleryController extends Controller
 
     public function photorel(Galery $galery)
     {
-        $form = \FormBuilder::create(RelPhotoGaleryForm::class, [
+        $form = \FormBuilder::create(RelPhotoProductForm::class, [
             'url' => route('admin.galeries.update', ['galery' => $galery->id]),
             'method' => 'PUT',
             'model' => $galery,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Order;
 use Closure;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Http\Request;
@@ -19,13 +20,12 @@ class JetstreamMiddleware
     public function handle(Request $request, Closure $next)
     {
         $sit = Auth::user()->cad_atualizado;
-        $nome = Auth::user()->nome_guerra;
 
         if($sit == 'n') {
             return redirect()->route('profile.show-cms');
-        }else{
-            return $next($request);
         }
+
+            return $next($request);
 
     }
 }

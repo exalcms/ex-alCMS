@@ -1,42 +1,49 @@
 @extends('layouts.excms')
 
 @section('conteudo')
-
-    <main id="main">
-
-        <!-- ======= Portfolio Details Section ======= -->
-        <section class="portfolio-details">
-            <div class="container">
-
-                <div class="portfolio-details-container" style="margin-top: 80px;">
-
-                    <div class="owl-carousel portfolio-details-carousel">
-                        <img src="{{asset('site/img/portfolio/portfolio-details-1.jpg')}}" class="img-fluid" alt="">
-                        <img src="{{asset('site/img/portfolio/portfolio-details-2.jpg')}}" class="img-fluid" alt="">
-                        <img src="{{asset('site/img/portfolio/portfolio-details-3.jpg')}}" class="img-fluid" alt="">
+    <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+        <div id="admin-content">
+            <div class="container-admin">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="w-auto p-3">
+                            <div class="panel-heading-admin">
+                                <h5>Lista de Galerias</h5>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row" style="margin-left: 10px; margin-right: 10px;">
+                                    {!!
+                                        Table::withContents($galeries)->striped()
+                                        ->callback('Detalhes', function ($field, $galery){
+                                            $photCount = count($galery->photos);
+                                            if($photCount == 0){
+                                                $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
+                                                $foto = $img->name;
+                                            }else{
+                                                foreach($galery->photos as $photo){
+                                                    $foto = $photo->photo_path;
+                                                    break;
+                                                }
+                                            }
+                                            return MediaObject::withContents([
+                                                'image' => asset($foto),
+                                                'link' => '#',
+                                                'heading' => $galery->titulo,
+                                                'body' => $galery->descricao.'<br/><i class="fas fa-photo"></i> Total de fotos: '.$photCount,
+                                                ])->addClass(['mo-galeria']);
+                                        })
+                                        ->callback('Ação', function ($field, $galery){
+                                            $linkShow = route('galery', ['galery' => $galery->id]);
+                                            return \Bootstrapper\Facades\Button::LINK('<i class="fas fa-eye"></i>')->asLinkTo($linkShow);
+                                        })
+                                    !!}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="portfolio-info">
-                        <h3>Project information</h3>
-                        <ul>
-                            <li><strong>Category</strong>: Web design</li>
-                            <li><strong>Client</strong>: ASU Company</li>
-                            <li><strong>Project date</strong>: 01 March, 2020</li>
-                            <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-                        </ul>
-                    </div>
-
                 </div>
-
-                <div class="portfolio-description">
-                    <h2>This is an example of portfolio detail</h2>
-                    <p>
-                        Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
-                    </p>
-                </div>
+                {{ $galeries->links() }}
             </div>
-        </section><!-- End Portfolio Details Section -->
-
-    </main><!-- End #main -->
-
+        </div>
+    </div>
 @endsection

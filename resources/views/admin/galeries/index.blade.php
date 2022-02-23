@@ -1,4 +1,4 @@
-@extends('layouts.excms')
+@extends('layouts.admin')
 
 @section('conteudo')
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
@@ -22,15 +22,15 @@
                                         $photCount = count($galery->photos);
                                         if($photCount == 0){
                                             $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
-                                            $foto = $img->name;
+                                            $foto = $img->photo_path;
                                         }else{
                                             foreach($galery->photos as $photo){
-                                                $foto = $photo->name;
+                                                $foto = $photo->photo_path;
                                                 break;
                                             }
                                         }
                                         return MediaObject::withContents([
-                                            'image' => asset('uploads/'.$foto),
+                                            'image' => asset($foto),
                                             'link' => '#',
                                             'heading' => $galery->titulo,
                                             'body' => $galery->descricao.'<br/><i class="fas fa-photo"></i> Total de fotos: '.$photCount,

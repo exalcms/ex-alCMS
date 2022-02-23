@@ -18,19 +18,8 @@
                     </div>
                     @else
                         <div class="owl-carousel portfolio-details-carousel">
-                            <?php
-                            $photos = array();
-                            foreach($convenio->photos as $photo){
-                                $nome = $photo->origin_name;
-                                $marca = "marca";
-                                if (!preg_match("/{$marca}/i", $nome)){
-                                    $foto = $photo->name;
-                                    array_push($photos, $foto);
-                                }
-                            }
-                            ?>
-                            @foreach($photos as $photo)
-                                <img src="{{asset('uploads/'.$photo)}}" class="img-fluid" alt="">
+                            @foreach($convenio->photos as $photo)
+                                <img src="{{asset($photo->photo_path)}}" class="img-fluid" alt="">
                             @endforeach
                         </div>
                     @endif

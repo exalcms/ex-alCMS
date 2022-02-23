@@ -1,4 +1,4 @@
-@extends('layouts.excms')
+@extends('layouts.admin')
 
 @section('conteudo')
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">

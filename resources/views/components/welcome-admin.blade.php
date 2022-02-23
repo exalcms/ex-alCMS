@@ -72,7 +72,7 @@
                 Laravel Jetstream is built with Tailwind, an amazing utility first CSS framework that doesn't get in your way. You'll be amazed how easily you can build and maintain fresh, modern designs with this wonderful framework at your fingertips.
             </div>
 
-            <a href="https://laravel.com/docs">
+            <a href="#">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                     <div>Use esta ferramenta para publicações</div>
 
@@ -96,7 +96,7 @@
                 Authentication and registration views are included with Laravel Jetstream, as well as support for user email verification and resetting forgotten passwords. So, you're free to get started what matters most: building your application.
             </div>
 
-            <a href="https://laravel.com/docs">
+            <a href="{{route('admin.painel')}}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                     <div>Acesse aqui para administrar a nossa loja</div>
 
@@ -123,7 +123,7 @@
                 ex-alunos que se identificam com ela e aumentar a união entre os ex-alunos.
             </div>
 
-            <a href="https://laravel.com/docs">
+            <a href="#">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                     <div>A edição das turmas já está disponível</div>
 
@@ -150,7 +150,7 @@
                 possam buscar através do nosso portal.
             </div>
 
-            <a href="https://laravel.com/docs">
+            <a href="#">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                     <div>Faça a ponte entre quem presta um bom serviço e quem precisa</div>
 

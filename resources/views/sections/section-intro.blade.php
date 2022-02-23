@@ -12,6 +12,10 @@
                     <a href="{{ route('register') }}" class="btn-get-started scrollto">Cadastre-se</a>
                     <a href="#services" class="btn-services scrollto">Nossas Parcerias</a>
                 </div>
+                <div>
+                    <a href="{{route('login')}}" class="mrg-esqd text-white scrollto">Já tenho Cadastro</a>
+                    <a href="#" class="mrg-esqd text-white" >Seja nosso Parceiro</a>
+                </div>
             </div>
 
         </div>

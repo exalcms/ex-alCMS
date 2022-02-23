@@ -12,6 +12,7 @@ use App\Models\ExPresidente;
 use App\Models\Galery;
 use App\Models\MensPresid;
 use App\Models\Photo;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -53,8 +54,24 @@ class ExcmsController extends Controller
         ])->inRandomOrder()->limit(3)->get();
         $galeries2 = $galeriasTurmas->merge($galeriasEvents)->sortByDesc('data');
         $galeries = $galeries2->merge($galeriasFotos)->sortByDesc('data');
+        $products = Product::with('photos')->where('ativo', '=', 's')
+            ->inRandomOrder()->limit(10)->get();
+
         return view('welcome', compact('assoc', 'dirFin', 'dirPres', 'dirSec', 'dirVic', 'dirJur',
-            'dirCom', 'dirCul', 'dirEsp', 'menspre', 'expresids', 'exCMS', 'convenios', 'galeries'));
+            'dirCom', 'dirCul', 'dirEsp', 'menspre', 'expresids', 'exCMS', 'convenios', 'galeries', 'products'));
+    }
+
+    public function nossaLoja()
+    {
+        $products = Product::with('photos')->where([
+            'ativo' => 's',
+        ])->paginate();
+        return view('nossaloja', compact('products'));
+    }
+
+    public function produto(Product $product)
+    {
+        return view('produto', compact('product'));
     }
 
     public function detail()
@@ -64,13 +81,14 @@ class ExcmsController extends Controller
 
     public function galeries()
     {
-        $galeries = Galery::with('photos')->where('publicada', '=', 's')->paginate(20);
+        $galeries = Galery::with('photos')->where('publicada', '=', 's')->paginate(15);
         return view('galeries', compact('galeries'));
     }
 
     public function galery(Galery $galery)
     {
-        return view('galery', compact('galery'));
+        $galeria = Galery::with('photos')->where('id', '=', $galery->id)->first();
+        return view('galery', compact('galeria'));
     }
 
     public function detailConv(Convenio $convenio)

@@ -1,4 +1,4 @@
-@extends('layouts.excms')
+@extends('layouts.admin')
 
 @section('conteudo')
     <div class="py-12" style="margin-top: 80px">

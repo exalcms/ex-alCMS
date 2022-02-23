@@ -1,4 +1,4 @@
-@extends('layouts.excms')
+@extends('layouts.admin')
 
 @section('conteudo')
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
@@ -12,12 +12,12 @@
                                 <?php
                                     if(!$convenio->foto){
                                         $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
-                                        $foto = $img->name;
+                                        $foto = $img->photo_path;
                                     }else{
-                                        $foto = $convenio->photo->name;
+                                        $foto = $convenio->photo->photo_path;
                                     }
                                  ?>
-                                    <img src="{!! asset('storage/'.$foto)!!}" width="60px">
+                                    <img src="{!! asset($foto)!!}" width="60px">
 
                             </div>
                             <h5>Relacionar foto com Convênio</h5>

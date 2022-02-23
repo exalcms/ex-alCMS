@@ -1,18 +1,22 @@
 <?php
 
 use App\Http\Controllers\AssociationsController;
+use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConvenioController;
+use App\Http\Controllers\CupomsController;
 use App\Http\Controllers\DiretoriasController;
 use App\Http\Controllers\DiretoriaUsersController;
 use App\Http\Controllers\ElementSitesController;
 use App\Http\Controllers\ExPresidentesController;
-use App\Http\Controllers\FileUpload;
 use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\LogadoController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MensagemsControler;
 use App\Http\Controllers\MensPresidsController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PhotosController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcmsController;
@@ -41,18 +45,30 @@ Route::get('/history', [ExcmsController::class, 'history'])->name('history');
 Route::get('/message-pres', [ExcmsController::class, 'messagePres'])->name('message-pres');
 Route::get('/mensagem', [MensagemsControler::class, 'create'])->name('mensagems.create');
 Route::post('mensagems', [MensagemsControler::class, 'store'])->name('mensagems.store');
+Route::get('/nossaloja', [ExcmsController::class, 'nossaLoja'])->name('nossaloja');
+Route::get('/produto/{product}', [ExcmsController::class, 'produto'])->name('produto');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [LogadoController::class, 'index'])->name('dashboard');
 
 //Route::get('/send-email', [MailController::class, 'sendEmail']);
 
 Route::group([
-    'prefix' => 'logado', 'as' => 'logado.', 'middleware' => 'can:logado'
+    'prefix' => 'logado', 'as' => 'logado.', 'middleware' => 'autorizador:logado'
 ], function (){
-    Route::get('loja', [LogadoController::class, 'index'])->name('detail');
+    Route::post('adicionar', [LogadoController::class, 'adiCar'])->name('carrinho.adicionar');
+    Route::get('nossaloja/{order}/cont-compra', [LogadoController::class, 'edit'])->name('nossaloja.cont-compra');
+    Route::get('nossaloja/{user}', [LogadoController::class, 'nossaLojaUser'])->name('nossaloja.comprar');
+    Route::get('produto/{product}/{order}', [LogadoController::class, 'productCont'])->name('produto-cont');
+    Route::put('produto/{order}', [LogadoController::class, 'update'])->name('carrinho.update');
+    Route::get('pedido/{order}', [LogadoController::class, 'show'])->name('pedido.show');
+    Route::get('pedido/edit/{order}', [LogadoController::class, 'editMyOrder'])->name('pedido.editMyOrder');
+    Route::delete('pedido/{order}', [LogadoController::class, 'destroy'])->name('pedido.destroy');
+    Route::get('pedidos/{user}', [LogadoController::class, 'myOrders'])->name('pedido.myorders');
+    Route::post('atualiza', [LogadoController::class, 'atualizOrder'])->name('atualiza.order');
+    Route::get('pedido/checkout/{order}', [LogadoController::class, 'checkOut'])->name('checkout');
+    Route::post('pedido/desconto', [LogadoController::class, 'aplicaDesct'])->name('desconta.order');
+
 });
 
 Route::group([
@@ -87,5 +103,16 @@ Route::group([
     Route::put('mensagems/{mensagem}', [MensagemsControler::class, 'update'])->name('mensagems.update');
     Route::delete('mensagems/{mensagem}', [MensagemsControler::class, 'destroy'])->name('mensagems.destroy');
     Route::post('send-emails/{mensagem}', [MensagemsControler::class, 'sendEmail'])->name('sendEmail');
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::get('products/{product}/photo-rel', [ProductController::class, 'photorel'])->name('products.photorel');
+
+    Route::get('painel-loja/painel', [OrdersController::class, 'index'])->name('painel');
+    Route::get('orders/{order}', [OrdersController::class, 'show'])->name('orders.show');
+    Route::get('orders', [OrdersController::class, 'create'])->name('orders.create');
+    Route::post('orders', [OrdersController::class, 'store'])->name('orders.store');
+
+    Route::resource('cupoms', CupomsController::class);
 
 });

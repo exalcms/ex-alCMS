@@ -1,4 +1,4 @@
-@extends('layouts.excms')
+@extends('layouts.admin')
 
 @section('conteudo')
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
@@ -19,26 +19,24 @@
                                 {!!
                                     Table::withContents($convenios)->striped()
                                     ->callback('Detalhes', function ($field, $convenio){
-
                                         if(!$convenio->photo){
                                             $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
-                                            $foto = $img->name;
+                                            $foto = $img->photo_path;
                                         }else{
                                             foreach($convenio->photos as $photo){
-                                                $nome = $photo->origin_name;
+                                                $nome = $photo->photo_path;
                                                 $marca = "marca";
                                                 if (preg_match("/{$marca}/i", $nome)){
                                                     $foto = $photo->name;
-                                                    //dd($foto);
                                                     break;
                                                 }else{
                                                     $img = \App\Models\Photo::where('origin_name', '=', 'dir_sem_foto.jpg')->first();
-                                                    $foto = $img->name;
+                                                    $foto = $img->photo_path;
                                                 }
                                             }
                                         }
                                         return MediaObject::withContents([
-                                            'image' => asset('uploads/'.$foto),
+                                            'image' => asset($foto),
                                             'link' => '#',
                                             'heading' => $convenio->empresa,
                                             'body' => $convenio->beneficios,

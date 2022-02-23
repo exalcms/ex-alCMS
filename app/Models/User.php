@@ -29,7 +29,7 @@ class User extends Authenticatable implements Transformable, TableInterface, Mus
 
     const ROLE_ADMIN = 1;
     const ROLE_EXALUNO = 2;
-    const ROLE_VISITANTE = 3;
+    const ROLE_ASSOCIADO = 3;
     const ROLE_BENEMERITOS = 4;
     const ROLE_ESPECIAIS = 5;
 

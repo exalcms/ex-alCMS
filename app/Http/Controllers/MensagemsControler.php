@@ -211,8 +211,10 @@ class MensagemsControler extends Controller
      * @param  \App\Models\Mensagem  $mensagem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mensagem $mensagem)
+    public function destroy(Request $request, Mensagem $mensagem)
     {
-        //
+        $mensagem->delete();
+        $request->session()->flash('msg', 'Mensagem apagada com sucesso');
+        return redirect()->route('admin.mensagems.index');
     }
 }
