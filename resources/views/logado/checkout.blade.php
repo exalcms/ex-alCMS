@@ -60,7 +60,7 @@
                                             <div style="text-align: right;">Valor Total da Compra: <span>{{number_format($order->total_final, 2, ',', '.') }}</span></div>
                                         @endif
                                         <div>
-                                            {!! Button::success('Pagar')->asLinkTo(route('logado.pagseguro', ['order' => $order->id])) !!}
+                                            {!! Button::success('Pagar')->asLinkTo(route('logado.pagseguro', ['order' => $order->id]))->addAttributes(['target' => '_blank']) !!}
                                             {!! Button::primary('Voltar')->asLinkTo(route('logado.pedido.myorders', ['user' => Auth::user()->id])) !!}
                                             {!! Button::danger('Cancelar')->asLinkTo(route('logado.pedido.destroy', ['order' => $order->id]))
                                         ->addAttributes(['onclick' => 'event.preventDefault();document.getElementById("form-delete").submit();'])

@@ -44,6 +44,7 @@ class User extends Authenticatable implements Transformable, TableInterface, Mus
         'celular', 'nome_guerra', 'num_cms', 'ano_ingres', 'ano_saida', 'formacao',
         'loc_trab', 'tel_com', 'redes_sociais', 'auto_assoc', 'auto_mail', 'assoc_emdia', 'password', 'role',
         'quiz_result', 'indicado_por', 'cad_ativo', 'camp_pesq', 'ex_aluno', 'cad_atualizado', 'ult_atualiz',
+        'em_dia',
     ];
 
     /**

@@ -1,6 +1,13 @@
 /node_modules
 /public/hot
 /public/storage
+/public/uploads/anuidade
+/public/uploads/bones
+/public/uploads/camisas
+/public/uploads/canecas
+/public/uploads/diretoria
+/public/uploads/eventos
+/public/uploads/senai_cimatec
 /storage/*.key
 /vendor
 .env

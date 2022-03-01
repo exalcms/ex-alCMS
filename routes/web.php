@@ -47,6 +47,8 @@ Route::get('/mensagem', [MensagemsControler::class, 'create'])->name('mensagems.
 Route::post('mensagems', [MensagemsControler::class, 'store'])->name('mensagems.store');
 Route::get('/nossaloja', [ExcmsController::class, 'nossaLoja'])->name('nossaloja');
 Route::get('/produto/{product}', [ExcmsController::class, 'produto'])->name('produto');
+Route::get('retorno', function (){ return view('logado.index'); });
+Route::post('notification', [LogadoController::class, 'notification'])->name('notification');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [LogadoController::class, 'index'])->name('dashboard');
@@ -68,6 +70,9 @@ Route::group([
     Route::post('atualiza', [LogadoController::class, 'atualizOrder'])->name('atualiza.order');
     Route::get('pedido/checkout/{order}', [LogadoController::class, 'checkOut'])->name('checkout');
     Route::post('pedido/desconto', [LogadoController::class, 'aplicaDesct'])->name('desconta.order');
+    Route::get('checkout/pagseguro/{order}', [LogadoController::class, 'pagseguro'])->name('pagseguro');
+
+
 
 });
 
