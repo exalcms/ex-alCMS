@@ -77,9 +77,12 @@ class LogadoController extends Controller
             $orderItem['qtd'] = $data['qtd'];
             $orderItem['total_item'] = $order->total_order;
 
-            $orderItem2 = OrderItem::create($orderItem);
+            OrderItem::create($orderItem);
+            $orderItems = OrderItem::where([
+                'order_id' => $order->id,
+            ])->get();
 
-            return view('logado.my-order', compact('order', 'orderItem2'));
+            return view('logado.my-order', compact('order', 'orderItems'));
         }
     }
 
@@ -453,6 +456,17 @@ class LogadoController extends Controller
      */
     public function destroy(Request $request, Order $order)
     {
-        dd("Implantar o destroy da Order");
+        $orderItems = OrderItem::where([
+            'order_id' => $order->id,
+        ])->get();
+
+        if (count($orderItems) > 0){
+            foreach ($orderItems as $orderItem){
+                $orderItem->delete();
+            }
+        }
+        $order->delete();
+        $request->session()->flash('msg', 'Pedido deletado com sucesso');
+        return redirect()->route('dashboard');
     }
 }

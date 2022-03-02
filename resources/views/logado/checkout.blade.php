@@ -1,3 +1,73 @@
+<?php
+
+use App\Models\User;
+use PagSeguro\Configuration\Configure;
+use PagSeguro\Domains\Requests\Payment;
+use PagSeguro\Library;
+
+$email = 'assoc.exalcms@gmail.com';
+$token = '81EEBD3D218840D09B3B254CF8991F7B';
+
+Library::initialize();
+Library::cmsVersion()->setName("Nome")->setRelease("1.0.0");
+Library::moduleVersion()->setName("Nome")->setRelease("1.0.0");
+Configure::setEnvironment('sandbox');
+Configure::setAccountCredentials($email, $token);
+Configure::setLog(true, (storage_path('/logs/pseg.log')));
+
+    $payment = new Payment();
+    $user = User::find(Auth::user()->id);
+
+    $id = 1;
+
+    foreach ($order->orderItems as $orderItem){
+        $payment->addItems()->withParameters(
+            $id++,
+            $orderItem->product->name,
+            $orderItem->qtd,
+            $orderItem->product->price
+        );
+    }
+
+    $payment->setCurrency("BRL");
+
+    if ($order->cupom_id != null) {
+        $discount = $order->total_final - $order->total_order;
+    } else {
+        $discount = 0.00;
+    }
+    $payment->setExtraAmount($discount);
+    $payment->setReference($order->order_num);
+    $payment->setRedirectUrl('https://associacaoexalunoscms.org.br/retorno');
+
+    // Set your customer information.
+    $payment->setSender()->setName($user->name_full);
+    $payment->setSender()->setEmail($user->email);
+
+    //$celu = explode(" ", $user->celular);
+    $sai = array("(",")"," ", "-","/","\\");
+    $celu = str_replace($sai, "", $user->celular);
+    $ddd = substr($celu, 0, 2);
+    $phone = substr($celu, 2, 9);
+    $payment->setSender()->setPhone()->withParameters($ddd, $phone);
+    $payment->setSender()->setDocument()->withParameters('CPF', $user->cpf);
+
+    //Add items by parameter using an array
+    $payment->addParameter()->withArray(['notificationURL', 'https://associacaoexalunoscms.org.br/notification']);
+
+    $payment->setRedirectUrl("https://associacaoexalunoscms.org.br/retorno");
+    $payment->setNotificationUrl("https://associacaoexalunoscms.org.br/notification");
+
+    /**
+     * @todo For checkout with application use:
+     * \PagSeguro\Configuration\Configure::getApplicationCredentials()
+     *  ->setAuthorizationCode("FD3AF1B214EC40F0B0A6745D041BF50D")
+     */
+    $result = $payment->register(
+        \PagSeguro\Configuration\Configure::getAccountCredentials()
+    );
+
+?>
 @extends('layouts.excms')
 
 @section('conteudo')
@@ -60,7 +130,7 @@
                                             <div style="text-align: right;">Valor Total da Compra: <span>{{number_format($order->total_final, 2, ',', '.') }}</span></div>
                                         @endif
                                         <div>
-                                            {!! Button::success('Pagar')->asLinkTo(route('logado.pagseguro', ['order' => $order->id]))->addAttributes(['target' => '_blank']) !!}
+                                            {!! Button::success('Pagar')->asLinkTo($result)->addAttributes(['target' => '_blank']) !!}
                                             {!! Button::primary('Voltar')->asLinkTo(route('logado.pedido.myorders', ['user' => Auth::user()->id])) !!}
                                             {!! Button::danger('Cancelar')->asLinkTo(route('logado.pedido.destroy', ['order' => $order->id]))
                                         ->addAttributes(['onclick' => 'event.preventDefault();document.getElementById("form-delete").submit();'])
