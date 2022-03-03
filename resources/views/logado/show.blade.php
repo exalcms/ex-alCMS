@@ -25,6 +25,9 @@
                                                     Fechado. (Pode ser alterado)
                                                     @break
                                                     @case(3)
+                                                    Processando pagamento. (Não pode ser alterado)
+                                                    @break
+                                                    @case(4)
                                                     Pago. (Não pode ser alterado)
                                                     @break
                                                     @case(2)

@@ -95,6 +95,9 @@ Configure::setLog(true, (storage_path('/logs/pseg.log')));
                                                     Fechado. (Pode ser alterado)
                                                     @break
                                                     @case(3)
+                                                    Processando pagamento. (Não pode ser alterado)
+                                                    @break
+                                                    @case(4)
                                                     Pago. (Não pode ser alterado)
                                                     @break
                                                     @case(2)
@@ -130,7 +133,17 @@ Configure::setLog(true, (storage_path('/logs/pseg.log')));
                                             <div style="text-align: right;">Valor Total da Compra: <span>{{number_format($order->total_final, 2, ',', '.') }}</span></div>
                                         @endif
                                         <div>
-                                            {!! Button::success('Pagar')->asLinkTo($result)->addAttributes(['target' => '_blank']) !!}
+                                            {!! Button::success('Pagar')->asLinkTo($result)
+                                                ->addAttributes([
+                                                'target' => '_blank',
+                                                'onclick' => 'event.initEvent(document.getElementById("form-pagseg").submit());']) !!}
+                                            <?php $formPagseguro = FormBuilder::plain([
+                                                'id' => 'form-pagseg',
+                                                'route' => ['logado.pagseguro' , 'order' => $order->id],
+                                                'method' => 'GET',
+                                                'style' => 'display:none',
+                                            ]);?>
+                                            {!! form($formPagseguro) !!}
                                             {!! Button::primary('Voltar')->asLinkTo(route('logado.pedido.myorders', ['user' => Auth::user()->id])) !!}
                                             {!! Button::danger('Cancelar')->asLinkTo(route('logado.pedido.destroy', ['order' => $order->id]))
                                         ->addAttributes(['onclick' => 'event.preventDefault();document.getElementById("form-delete").submit();'])

@@ -19,8 +19,9 @@ class Order extends Model implements Transformable, TableInterface
     //STATUS DAS ORDENS
     const ORDER_OPENED = 1; //aberta ainda sem totalizar
     const ORDER_CLOSED = 2; //fechada aguardando pagamento
-    const ORDER_DELIVERED = 3; //paga aguardando entrega ao cliente
-    const ORDER_FINALIZADA = 4; //entregue e totalmente finalizada
+    const ORDER_PAGSEGURO = 3; // Pagamento em processamento
+    const ORDER_DELIVERED = 4; //paga aguardando entrega ao cliente
+    const ORDER_FINALIZADA = 5; //entregue e totalmente finalizada
 
 
     /**
@@ -72,8 +73,10 @@ class Order extends Model implements Transformable, TableInterface
                     case 2:
                         return 'Pedido fechado aguardando pagamento';
                     case 3:
-                        return 'Pedido pago aguardando a entrega';
+                        return 'Processando Pagamento';
                     case 4:
+                        return 'Pedido pago aguardando a entrega';
+                    case 5:
                         return 'Pedido concluído';
                 }
         }

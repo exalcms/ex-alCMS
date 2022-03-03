@@ -31,7 +31,7 @@ class LogadoController extends Controller
         $order = Order::where([
             'user_id' => $user_id,
         ])->whereNotIn(
-            'status', [3,4])->first();
+            'status', [3,4,5])->first();
         if ($order != null){
             return view('dashboard-order', compact('order'));
         }else{
@@ -55,7 +55,7 @@ class LogadoController extends Controller
         $order = Order::where([
             'user_id' => $user_id,
         ])->whereNotIn(
-            'status', [3,4])->first();
+            'status', [3,4,5])->first();
         if ($order != null){
             $orderItems = OrderItem::where([
                 'order_id' => $order->id,
@@ -91,7 +91,7 @@ class LogadoController extends Controller
         $order = Order::where([
             'user_id' => $user->id,
         ])->whereNotIn(
-            'status', [3,4])->first();
+            'status', [3,4,5])->first();
         if ($order == null){
             $products = Product::with('photos')->where([
                 'ativo' => 's',
@@ -197,130 +197,13 @@ class LogadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pagseguro(Order $order)
+    public function pagseguro(Request $request, Order $order)
     {
-        $email = 'assoc.exalcms@gmail.com';
-        $token = '81EEBD3D218840D09B3B254CF8991F7B';
+        $data['status'] = 3;
+        $order->fill($data);
+        $order->save();
 
-        Library::initialize();
-        Library::cmsVersion()->setName("Nome")->setRelease("1.0.0");
-        Library::moduleVersion()->setName("Nome")->setRelease("1.0.0");
-        Configure::setEnvironment('sandbox');
-        Configure::setAccountCredentials($email, $token);
-        Configure::setLog(true, (storage_path('/logs/pseg.log')));
-
-        $payment = new Payment();
-        $user = User::find(Auth::user()->id);
-
-        $id = 1;
-        foreach ($order->orderItems as $orderItem){
-            $payment->addItems()->withParameters(
-                $id++,
-                $orderItem->product->name,
-                $orderItem->qtd,
-                $orderItem->product->price
-            );
-        }
-
-        $payment->setCurrency("BRL");
-
-        if ($order->cupom_id != null) {
-            $discount = $order->total_final - $order->total_order;
-        } else {
-            $discount = 0.00;
-        }
-
-        $payment->setExtraAmount($discount);
-        $payment->setReference($order->order_num);
-        $payment->setRedirectUrl('https://associacaoexalunoscms.org.br/retorno');
-
-        // Set your customer information.
-        $payment->setSender()->setName($user->name);
-        $payment->setSender()->setEmail($user->email);
-
-        $celu = explode(" ", $user->celular);
-        $ddd = substr($celu[0], 1, 2);
-        $phone = str_replace('-', '', $celu[1]);
-        $payment->setSender()->setPhone()->withParameters($ddd, $phone);
-        $payment->setSender()->setDocument()->withParameters('CPF', $user->cpf);
-
-        /*
-        $payment->setShipping()->setAddress()->withParameters(
-            'Av. Brig. Faria Lima',
-            '1384',
-            'Jardim Paulistano',
-            '01452002',
-            'São Paulo',
-            'SP',
-            'BRA',
-            'apto. 114'
-        );
-
-        $payment->setShipping()->setCost()->withParameters(20.00);
-        $payment->setShipping()->setType()->withParameters(\PagSeguro\Enum\Shipping\Type::SEDEX);
-
-        //Add metadata items
-        $payment->addMetadata()->withParameters('PASSENGER_CPF', '024.696.195-30');
-        $payment->addMetadata()->withParameters('GAME_NAME', 'DOTA');
-        $payment->addMetadata()->withParameters('PASSENGER_PASSPORT', '23456', 1);
-
-        //Add items by parameter
-        //On index, you have to pass in parameter: total items plus one.
-        $payment->addParameter()->withParameters('itemId', '0003')->index(3);
-        $payment->addParameter()->withParameters('itemDescription', 'Notebook Amarelo')->index(3);
-        $payment->addParameter()->withParameters('itemQuantity', '1')->index(3);
-        $payment->addParameter()->withParameters('itemAmount', '200.00')->index(3);
-
-        //Add discount
-        $payment->addPaymentMethod()->withParameters(
-            PagSeguro\Enum\PaymentMethod\Group::CREDIT_CARD,
-            PagSeguro\Enum\PaymentMethod\Config\Keys::DISCOUNT_PERCENT,
-            10.00 // (float) Percent
-        );
-
-        //Add installments with no interest
-        $payment->addPaymentMethod()->withParameters(
-            \PagSeguro\Enum\PaymentMethod\Group::CREDIT_CARD,
-            \PagSeguro\Enum\PaymentMethod\Config\Keys::MAX_INSTALLMENTS_NO_INTEREST,
-            2 // (int) qty of installment
-        );
-
-        //Add a limit for installment
-        $payment->addPaymentMethod()->withParameters(
-            \PagSeguro\Enum\PaymentMethod\Group::CREDIT_CARD,
-            \PagSeguro\Enum\PaymentMethod\Config\Keys::MAX_INSTALLMENTS_LIMIT,
-            6 // (int) qty of installment
-        );
-
-        // Add a group and/or payment methods name
-        $payment->acceptPaymentMethod()->groups(
-            \PagSeguro\Enum\PaymentMethod\Group::CREDIT_CARD,
-            \PagSeguro\Enum\PaymentMethod\Group::BALANCE
-        );
-        $payment->acceptPaymentMethod()->name(\PagSeguro\Enum\PaymentMethod\Name::DEBITO_ITAU);
-        // Remove a group and/or payment methods name
-        $payment->excludePaymentMethod()->group(\PagSeguro\Enum\PaymentMethod\Group::BOLETO);
-
-        */
-        //Add items by parameter using an array
-        $payment->addParameter()->withArray(['notificationURL', 'https://associacaoexalunoscms.org.br/notification']);
-
-        $payment->setRedirectUrl("https://associacaoexalunoscms.org.br/retorno");
-        $payment->setNotificationUrl("https://associacaoexalunoscms.org.br/notification");
-
-
-
-        /**
-         * @todo For checkout with application use:
-         * \PagSeguro\Configuration\Configure::getApplicationCredentials()
-         *  ->setAuthorizationCode("FD3AF1B214EC40F0B0A6745D041BF50D")
-         */
-        $result = $payment->register(
-            \PagSeguro\Configuration\Configure::getAccountCredentials()
-        );
-        //dd($result);
-        return redirect()->away($result);
-
+        return view('logado.finally', compact('order'));
     }
 
     /**
