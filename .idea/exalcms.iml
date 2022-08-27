@@ -144,6 +144,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pagseguro/pagseguro-php-sdk" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/biscolab/laravel-recaptcha" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

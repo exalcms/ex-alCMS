@@ -64,7 +64,7 @@ class MensagemsControler extends Controller
             $data['cadastrado'] = 's';
         }
         //dd($data);
-        Mensagem::create($data);
+        $msg = Mensagem::create($data);
 
         $emailTo = $data['email'];
         $nome = $data['nome'];
@@ -89,6 +89,10 @@ class MensagemsControler extends Controller
         ];
 
         Mail::to($emailTo)->send(new SendMailUser($mailData));
+
+        if(!Response::HTTP_OK){
+            $msg->delete();
+        }
 
         $request->session()->flash('msg', 'Mensagem enviada com sucesso!');
         return redirect()->route('/');

@@ -13,14 +13,14 @@
                             <div class="panel-body">
                                 <div class="row" style="margin-left: 10px; margin-right: 10px;">
                                     <div id="finally">
-                                        <div>Obrigado, {{Auth::user()->name}}, pela sua operação.</div>
+                                        <div>Obrigado, {{Auth::user()->name}}, pela sua atitude.</div>
                                         <div>
                                             Cada uma dessas operações é, na verdade uma importante colaboração para
                                             o fortalecimento da Associação dos Ex-Alunos do CMS.
                                         </div>
                                         <div>= = = = = = =</div>
                                         <div>
-                                            Estamos gratos! A cada alteração do status você será comunicado pelo seu email cadastrado sobre a sua operação.
+                                            Estamos gratos! A cada alteração do status do seu pedido, você será comunicado pelo seu email cadastrado sobre a sua operação.
                                         </div>
                                     </div>
                                     <div class="divider" style="margin-top: 7px;">{!! Button::primary('Voltar')->asLinkTo(route('logado.pedido.myorders', ['user' => Auth::user()->id])) !!}</div>

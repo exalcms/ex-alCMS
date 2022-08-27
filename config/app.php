@@ -169,6 +169,7 @@ return [
         Bootstrapper\BootstrapperL5ServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
 
 
         /*
@@ -242,6 +243,7 @@ return [
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
 
     ],
 

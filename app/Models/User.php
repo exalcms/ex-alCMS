@@ -32,6 +32,7 @@ class User extends Authenticatable implements Transformable, TableInterface, Mus
     const ROLE_ASSOCIADO = 3;
     const ROLE_BENEMERITOS = 4;
     const ROLE_ESPECIAIS = 5;
+    const ROLE_VISITANTE = 6;
 
     /**
      * The attributes that are mass assignable.

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMailUser;
 use App\Models\Cupom;
 use App\Models\Item;
 use App\Models\Order;
@@ -11,6 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use PagSeguro\Configuration\Configure;
 use PagSeguro\Domains\Document;
 use PagSeguro\Domains\Phone;
@@ -197,11 +199,38 @@ class LogadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function pagseguro(Request $request, Order $order)
+    public function pagseguro(Order $order)
     {
         $data['status'] = 3;
         $order->fill($data);
         $order->save();
+
+        $user = User::find($order->user_id);
+        $emailTo = $user->email;
+        $nome = $user->name;
+        $date = now();
+
+        $messagem  = "Olá $nome,";
+        $messagem .= "<br/><br/>";
+        $messagem .= "Seu pedido de nº ".$order->order_num." já está registrado e encontra-se atualmente<br/>";
+        $messagem .= "aguardando a confirmação do pagamento. Lhe manteremos informado durante toda tramitação.";
+        $messagem .= "<br/><br/>";
+        $messagem .= "Obrigado pela sua atitude. <br/>";
+        $messagem .= "Esta é uma mensagem automática, por favor não responda este email!";
+        $messagem .= "<br/><br/>";
+        $messagem .= "Caso tenha mais alguma dúvida, pode nos contatar, enviando o número, do pedido através do nosso formulário no site</br>";
+
+        $mailData = [
+            'title' => 'Status do pedido nº '.$order->order_num,
+            'sub-title' => 'Acompanhamento de pedido',
+            'mensagem' => $messagem,
+            'url' => null,
+            'title-button' => null,
+            'date' => $date,
+        ];
+
+        Mail::to($emailTo)->send(new SendMailUser($mailData));
+
 
         return view('logado.finally', compact('order'));
     }
